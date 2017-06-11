@@ -5,8 +5,24 @@
     <entry>
       <title><![CDATA[新的一天]]></title>
       <url>/2017/06/11/%E6%96%B0%E7%9A%84%E4%B8%80%E5%A4%A9/</url>
-      <content type="html"></content>
+      <content type="html"><![CDATA[<p>花了几个小时又搭了一个博客,之前也写过一些,但是一直都没有坚持下来.<br><em>1 ASDF
+</em>2 ASDF</p>
+]]></content>
       
+        <categories>
+            
+            <category> 胡言乱语 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 没什么用 </tag>
+            
+            <tag> hexo </tag>
+            
+        </tags>
         
     </entry>
     
@@ -15,6 +31,7 @@
       <url>/2017/06/10/hello-world/</url>
       <content type="html"><![CDATA[<p>你好啊,勇士<br><blockquote><p>NEW: DevDocs now comes with syntax highlighting. <a href="http://devdocs.io" target="_blank" rel="external">http://devdocs.io</a></p>
 <footer><strong>@DevDocs</strong><cite><a href="https://twitter.com/devdocs/status/356095192085962752" target="_blank" rel="external">twitter.com/devdocs/status/356095192085962752</a></cite></footer></blockquote></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args [])</span> </span>&#123;</div><div class="line">	system.out.print();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 ]]></content>
       
         <categories>
@@ -24,10 +41,31 @@
         </categories>
         
         
+        <tags>
+            
+            <tag> 测试 </tag>
+            
+            <tag> 新增 </tag>
+            
+        </tags>
+        
     </entry>
     
   
   
+    
+    <entry>
+      <title><![CDATA[关于]]></title>
+      <url>/%E5%85%B3%E4%BA%8E/index.html</url>
+      <content type="html"><![CDATA[<p>贾康的个人博客.<br>可以从上边找到一些java,安卓,信息安全,算法的分享<br>评论插件被墙,暂未找到好的替代方案.<br>之所以选用hexo,是如果用动态的,就得用自己的服务器,就得备案.</p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[tags]]></title>
+      <url>/tags/index.html</url>
+      <content type="html"></content>
+    </entry>
     
   
 </search>

@@ -36,7 +36,7 @@
     <meta name="theme-color" content="#0097A7">
     <meta name="author" content="贾康">
     <meta name="description" itemprop="description" content="和软件相关的学习记录以及解决问题的记录.">
-    <meta name="keywords" content="null">
+    <meta name="keywords" content="null,测试,新增">
 
     <!-- Site Verification -->
     
@@ -68,7 +68,7 @@
     <meta property="og:title" content="第一篇 | 胡言乱语乱七八糟">
     <meta property="og:image" content="/img/favicon.png" />
     <meta property="og:description" content="和软件相关的学习记录以及解决问题的记录.">
-    
+    <meta property="og:article:tag" content="测试"> <meta property="og:article:tag" content="新增"> 
 
     
         <meta property="article:published_time" content="6月 10, 2017" />
@@ -324,11 +324,6 @@
     
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
         
-        <!--
-        <li class="mdl-menu__item">
-            Some Action
-        </li>
-        -->
     </ul>
     
 
@@ -404,7 +399,7 @@
     </button>
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
-        
+        <a class="post_tag-link" href="/tags/新增/">新增</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/测试/">测试</a>
     </ul>
     
 
@@ -429,20 +424,8 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=第一篇&url=http://yoursite.com/2017/06/10/hello-world/index.html&via=贾康" target="_blank">
-            <li class="mdl-menu__item">
-                分享到 Twitter
-            </li>
-        </a>
-    
 
     <!-- Share Facebook -->
-    
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/06/10/hello-world/index.html" target="_blank">
-            <li class="mdl-menu__item">
-                分享到 Facebook
-            </li>
-        </a>
     
 
     <!-- Share Google+ -->
@@ -473,6 +456,7 @@
     
         <p>你好啊,勇士<br><blockquote><p>NEW: DevDocs now comes with syntax highlighting. <a href="http://devdocs.io" target="_blank" rel="external">http://devdocs.io</a></p>
 <footer><strong>@DevDocs</strong><cite><a href="https://twitter.com/devdocs/status/356095192085962752" target="_blank" rel="external">twitter.com/devdocs/status/356095192085962752</a></cite></footer></blockquote></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args [])</span> </span>&#123;</div><div class="line">	system.out.print();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
     
 
@@ -485,6 +469,35 @@
                 <!-- Post Comments -->
                 
                     
+    <!-- 使用 DISQUS -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2017/06/10/hello-world/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://yoursite.com/2017/06/10/hello-world/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+<script type="text/ls-javascript" id="disqus-thread-script">
+    queue.offer(function() {
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document;
+                var s = d.createElement('script');
+                s.src = '//jiakangblog.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', + new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        });
+</script>
+
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
                 
             </div>
 
@@ -599,13 +612,33 @@
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/算法/">算法<span class="sidebar_archives-count">1</span></a>
+                <a class="sidebar_archives-link" href="/categories/算法/">算法<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/胡言乱语/">胡言乱语<span class="sidebar_archives-count">1</span></a>
             </ul>
         </li>
         
     
 
     <!-- Pages  -->
+    
+        <li>
+            <a href="/关于" title="关于">
+                
+                    <i class="material-icons sidebar-material-icons">person</i>
+                
+                关于
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/tags" title="标签">
+                
+                    <i class="material-icons sidebar-material-icons">star</i>
+                
+                标签
+            </a>
+        </li>
+        
     
 
     <!-- Article Number  -->
@@ -626,17 +659,8 @@ It will not impact the appearance and can give developers a lot of support :)
 
 <!-- Sidebar Divider -->
 
-    <div class="sidebar-divider"></div>
-
 
 <!-- Theme Material -->
-
-    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
-        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
-            主题 - Material
-            <span class="sidebar-badge badge-circle">i</span>
-        </div>
-    </a>
 
 
 <!-- Help & Support -->
@@ -777,6 +801,9 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
 
+
+   <!-- 使用 DISQUS js 代码 -->
+<script id="dsq-count-scr" src="//jiakangblog.disqus.com/count.js" async></script>
 
 
 
