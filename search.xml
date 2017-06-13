@@ -5,8 +5,11 @@
     <entry>
       <title><![CDATA[新的一天]]></title>
       <url>/2017/06/11/%E6%96%B0%E7%9A%84%E4%B8%80%E5%A4%A9/</url>
-      <content type="html"><![CDATA[<p>花了几个小时又搭了一个博客,之前也写过一些,但是一直都没有坚持下来.<br><em>1 ASDF
-</em>2 ASDF</p>
+      <content type="html"><![CDATA[<h3 id="又一次开始"><a href="#又一次开始" class="headerlink" title="又一次开始"></a>又一次开始</h3><p>花了几个小时又搭了一个博客,之前也写过一些,但是一直都没有坚持下来.<br>这次选的hexo 用的material主题,因为它看起来很干净.<br>markdown的语法几乎记不起来了.其实只要记得,引用,代码块,图片,列表就够了吧.挨个试一下.  </p>
+<h4 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h4><blockquote><p><item><br>一个字符串，可包括样式设置标记。其值可以是对另一字符串资源的引用。 必须是 <string-array> 元素的子项。请注意，您必须将撇号和引号转义。 如需了解有关如何正确设置字符串样式和格式的信息，请参阅下文的格式和样式设置。<br>无属性。</string-array></item></p>
+<footer><strong>android</strong><cite><a href="https://developer.android.com/guide/topics/resources/string-resource.html" target="_blank" rel="external">链接</a></cite></footer></blockquote>  
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args [])</span> </span>&#123;</div><div class="line">	System.out.println(<span class="string">" "</span>);</div><div class="line">&#125;  </div><div class="line">暂时这样有空调出来代码高亮。</div></pre></td></tr></table></figure>  
+<h4 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h4><img src="/image/head.jpg">
 ]]></content>
       
         <categories>
@@ -55,16 +58,16 @@
   
     
     <entry>
+      <title><![CDATA[tags]]></title>
+      <url>/tags/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[关于]]></title>
       <url>/%E5%85%B3%E4%BA%8E/index.html</url>
       <content type="html"><![CDATA[<p>贾康的个人博客.<br>可以从上边找到一些java,安卓,信息安全,算法的分享<br>评论插件被墙,暂未找到好的替代方案.<br>之所以选用hexo,是如果用动态的,就得用自己的服务器,就得备案.</p>
 ]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[tags]]></title>
-      <url>/tags/index.html</url>
-      <content type="html"></content>
     </entry>
     
   
