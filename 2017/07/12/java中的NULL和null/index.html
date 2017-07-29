@@ -323,7 +323,7 @@
 
     
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#问题来源"><span class="post-toc-text">问题来源</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#解决过程"><span class="post-toc-text">解决过程</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#感悟"><span class="post-toc-text">感悟</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#u95EE_u9898_u6765_u6E90"><span class="post-toc-text">问题来源</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#u89E3_u51B3_u8FC7_u7A0B"><span class="post-toc-text">解决过程</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#u611F_u609F"><span class="post-toc-text">感悟</span></a></li></ol>
     </ul>
     
 
@@ -454,11 +454,11 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <h3 id="问题来源"><a href="#问题来源" class="headerlink" title="问题来源"></a>问题来源</h3><p>众所周知,java的语法中是没有NULL的,那我为什么要起一个骇人听闻的标题呢?昨天code的时候,我给一个Integer赋值为空,但是debug发现它的值为0.</p>
-<h3 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h3><p>我很恐慌,觉得自己的认知受到了颠覆,开始看Integer的自动装箱.开始四处查资料,两个小时过去了,我发现我的赋值语句是这样的.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Integer i=NULL;</div></pre></td></tr></table></figure></p>
+        <h3 id="u95EE_u9898_u6765_u6E90"><a href="#u95EE_u9898_u6765_u6E90" class="headerlink" title="问题来源"></a>问题来源</h3><p>众所周知,java的语法中是没有NULL的,那我为什么要起一个骇人听闻的标题呢?昨天code的时候,我给一个Integer赋值为空,但是debug发现它的值为0.</p>
+<h3 id="u89E3_u51B3_u8FC7_u7A0B"><a href="#u89E3_u51B3_u8FC7_u7A0B" class="headerlink" title="解决过程"></a>解决过程</h3><p>我很恐慌,觉得自己的认知受到了颠覆,开始看Integer的自动装箱.开始四处查资料,两个小时过去了,我发现我的赋值语句是这样的.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Integer i=NULL;</div></pre></td></tr></table></figure></p>
 <p>我发现了有哪里不对,我点到NULL的声明里边去.发现这个变量位于java.sql,类名为Types<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * &lt;P&gt;The constant in the Java programming language</div><div class="line"> * that identifies the generic SQL value</div><div class="line"> * &lt;code&gt;NULL&lt;/code&gt;.</div><div class="line"> */</div><div class="line">        public final static int NULL            =   0;</div></pre></td></tr></table></figure></p>
 <p>额,原来是手残拼错了.我的两个小时啊….</p>
-<h3 id="感悟"><a href="#感悟" class="headerlink" title="感悟"></a>感悟</h3><p> 最近换了新的ide,intellja 会自动加入静态引用,而eclipse不会,也许之前也拼错过,但是eclipse会报错吧.<br>感悟就是:关注语法,注意保留关键字.注意代码中不同单词在ide中颜色不一样.<br>以及google和stackoverflow也不是全能的,它们拯救不了一个傻逼.</p>
+<h3 id="u611F_u609F"><a href="#u611F_u609F" class="headerlink" title="感悟"></a>感悟</h3><p> 最近换了新的ide,intellja 会自动加入静态引用,而eclipse不会,也许之前也拼错过,但是eclipse会报错吧.<br>感悟就是:关注语法,注意保留关键字.注意代码中不同单词在ide中颜色不一样.<br>以及google和stackoverflow也不是全能的,它们拯救不了一个傻逼.</p>
 
     
 
@@ -604,7 +604,7 @@
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/archives/2017/07/">七月 2017<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/06/">六月 2017<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/11/">十一月 2016<span class="sidebar_archives-count">12</span></a>
+                <a class="sidebar_archives-link" href="/archives/2017/07/">七月 2017<span class="sidebar_archives-count">8</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/06/">六月 2017<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/11/">十一月 2016<span class="sidebar_archives-count">12</span></a>
             </ul>
         </li>
         
@@ -622,7 +622,7 @@
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/android/">android<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/java/">java<span class="sidebar_archives-count">12</span></a></li><li><a class="sidebar_archives-link" href="/categories/linux/">linux<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/安全/">安全<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/安卓/">安卓<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/笔记/">笔记<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/胡言乱语/">胡言乱语<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/设计/">设计<span class="sidebar_archives-count">1</span></a>
+                <a class="sidebar_archives-link" href="/categories/android/">android<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/java/">java<span class="sidebar_archives-count">12</span></a></li><li><a class="sidebar_archives-link" href="/categories/linux/">linux<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/python/">python<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/安全/">安全<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/安卓/">安卓<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/笔记/">笔记<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/编程/">编程<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/胡言乱语/">胡言乱语<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/设计/">设计<span class="sidebar_archives-count">1</span></a>
             </ul>
         </li>
         

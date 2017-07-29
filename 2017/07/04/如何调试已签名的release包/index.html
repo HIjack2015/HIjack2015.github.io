@@ -323,7 +323,7 @@
 
     
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#问题来源"><span class="post-toc-text">问题来源</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#解决过程"><span class="post-toc-text">解决过程</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#另一个问题"><span class="post-toc-text">另一个问题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#我的感悟"><span class="post-toc-text">我的感悟</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#u95EE_u9898_u6765_u6E90"><span class="post-toc-text">问题来源</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#u89E3_u51B3_u8FC7_u7A0B"><span class="post-toc-text">解决过程</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#u53E6_u4E00_u4E2A_u95EE_u9898"><span class="post-toc-text">另一个问题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#u6211_u7684_u611F_u609F"><span class="post-toc-text">我的感悟</span></a></li></ol>
     </ul>
     
 
@@ -454,13 +454,13 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <h3 id="问题来源"><a href="#问题来源" class="headerlink" title="问题来源"></a>问题来源</h3><p>最近调试android应用时遇到了一个问题,在debug模式下应用跑的很好,但是安装签了名的release包就出现奇怪的错误.此外有些sdk必须在签名后才能调用,所以调试签名后的release包是很有必要的.</p>
-<h3 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h3><p>首先去搜资料,发现大都很旧了,找了半天找到了这个.<br>首先 在build variant 中调整模式为release.<br><img src="/images/pasted-15.png" alt="upload successful"><br>然后File-project structure 进行签名配置.<br><img src="/images/pasted-17.png" alt="upload successful"><br><img src="/images/pasted-16.png" alt="upload successful"><br>这样就可以调试签名过的app了.但是调试时发现了另一个问题.</p>
-<h3 id="另一个问题"><a href="#另一个问题" class="headerlink" title="另一个问题"></a>另一个问题</h3><p>无法下断点,下断点后不跑断点处.上网搜索发现是因为proguard.pro没有配置这个</p>
+        <h3 id="u95EE_u9898_u6765_u6E90"><a href="#u95EE_u9898_u6765_u6E90" class="headerlink" title="问题来源"></a>问题来源</h3><p>最近调试android应用时遇到了一个问题,在debug模式下应用跑的很好,但是安装签了名的release包就出现奇怪的错误.此外有些sdk必须在签名后才能调用,所以调试签名后的release包是很有必要的.</p>
+<h3 id="u89E3_u51B3_u8FC7_u7A0B"><a href="#u89E3_u51B3_u8FC7_u7A0B" class="headerlink" title="解决过程"></a>解决过程</h3><p>首先去搜资料,发现大都很旧了,找了半天找到了这个.<br>首先 在build variant 中调整模式为release.<br><img src="/images/pasted-15.png" alt="upload successful"><br>然后File-project structure 进行签名配置.<br><img src="/images/pasted-17.png" alt="upload successful"><br><img src="/images/pasted-16.png" alt="upload successful"><br>这样就可以调试签名过的app了.但是调试时发现了另一个问题.</p>
+<h3 id="u53E6_u4E00_u4E2A_u95EE_u9898"><a href="#u53E6_u4E00_u4E2A_u95EE_u9898" class="headerlink" title="另一个问题"></a>另一个问题</h3><p>无法下断点,下断点后不跑断点处.上网搜索发现是因为proguard.pro没有配置这个</p>
 <pre><code>-renamesourcefileattribute SourceFile   
 -keepattributes SourceFile,LineNumberTable
 </code></pre><p>加入配置后可以正常调试.最终发现问题是 proguard.pro不该混淆内容少配置了,导致混淆了不该混淆的内容.</p>
-<h3 id="我的感悟"><a href="#我的感悟" class="headerlink" title="我的感悟"></a>我的感悟</h3><p>什么面向对象编程,面向函数编程.分明是面向google和面向stack over flow 编程.</p>
+<h3 id="u6211_u7684_u611F_u609F"><a href="#u6211_u7684_u611F_u609F" class="headerlink" title="我的感悟"></a>我的感悟</h3><p>什么面向对象编程,面向函数编程.分明是面向google和面向stack over flow 编程.</p>
 
     
 
@@ -606,7 +606,7 @@
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/archives/2017/07/">七月 2017<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/06/">六月 2017<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/11/">十一月 2016<span class="sidebar_archives-count">12</span></a>
+                <a class="sidebar_archives-link" href="/archives/2017/07/">七月 2017<span class="sidebar_archives-count">8</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/06/">六月 2017<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/11/">十一月 2016<span class="sidebar_archives-count">12</span></a>
             </ul>
         </li>
         
@@ -624,7 +624,7 @@
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/android/">android<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/java/">java<span class="sidebar_archives-count">12</span></a></li><li><a class="sidebar_archives-link" href="/categories/linux/">linux<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/安全/">安全<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/安卓/">安卓<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/笔记/">笔记<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/胡言乱语/">胡言乱语<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/设计/">设计<span class="sidebar_archives-count">1</span></a>
+                <a class="sidebar_archives-link" href="/categories/android/">android<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/java/">java<span class="sidebar_archives-count">12</span></a></li><li><a class="sidebar_archives-link" href="/categories/linux/">linux<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/python/">python<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/安全/">安全<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/安卓/">安卓<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/笔记/">笔记<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/编程/">编程<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/胡言乱语/">胡言乱语<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/设计/">设计<span class="sidebar_archives-count">1</span></a>
             </ul>
         </li>
         

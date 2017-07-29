@@ -323,7 +323,7 @@
 
     
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#问题来源"><span class="post-toc-text">问题来源</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#解决过程"><span class="post-toc-text">解决过程</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#感悟"><span class="post-toc-text">感悟</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#u95EE_u9898_u6765_u6E90"><span class="post-toc-text">问题来源</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#u89E3_u51B3_u8FC7_u7A0B"><span class="post-toc-text">解决过程</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#u611F_u609F"><span class="post-toc-text">感悟</span></a></li></ol>
     </ul>
     
 
@@ -454,9 +454,9 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <h3 id="问题来源"><a href="#问题来源" class="headerlink" title="问题来源"></a>问题来源</h3><p>今天安装在virtualbox上安装了kali linux,安装好以后发现屏幕分辨率为1024<em>768,看起来特别小. 于是打开kali中显示器设置,发现只有1024</em>768和更低的分辨率可选.<br><img src="/images/pasted-2.png" alt="upload successful"></p>
-<h3 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h3><p>上网搜解决方案,通过<a href="https://docs.kali.org/general-use/kali-linux-virtual-box-guest" target="_blank" rel="external">官方文档</a>了解到需要安装增强工具.照做之后仍然无法调整屏幕分辨率.<br> 于是尝试使用官网上旧的方案安装,按照<a href="http://jingyan.baidu.com/article/73c3ce28e6b899e50343d92f.html" target="_blank" rel="external">百度经验</a><br>尝试安装.报错.被告知先要执行<br><code>apt-get install gcc make linux-headers-$(uname -r)</code><br>执行报错.报错为:<br><code>Unable to locate package &#39;linux-headers-4.9.0-kali3-amd64&#39;</code><br> 然后我在<br><a href="https://unix.stackexchange.com/questions/266871/cannot-find-linux-headers-4-3-0-kali-amd64" target="_blank" rel="external">某个外国论坛</a><br>按照教程更新了内核,重新尝试,仍然报错.<br>继续寻找解决方案.翻遍了互联网,仍然不行.<br>无奈之下考虑版本冲突.原来的virtualbox 版本为5.024 .更新到当前最新的5.1.22后重启虚拟机安装直接成功,重启后分辨率可调节:<br><img src="/images/pasted-4.png" alt="upload successful">  </p>
-<h3 id="感悟"><a href="#感悟" class="headerlink" title="感悟"></a>感悟</h3><p>官网文档一般不会出错,出错后考虑版本环境问题.<br>还是自己太菜了,此外kali的图标真的帅,甩出ubuntu,红帽,centos20条街.</p>
+        <h3 id="u95EE_u9898_u6765_u6E90"><a href="#u95EE_u9898_u6765_u6E90" class="headerlink" title="问题来源"></a>问题来源</h3><p>今天安装在virtualbox上安装了kali linux,安装好以后发现屏幕分辨率为1024<em>768,看起来特别小. 于是打开kali中显示器设置,发现只有1024</em>768和更低的分辨率可选.<br><img src="/images/pasted-2.png" alt="upload successful"></p>
+<h3 id="u89E3_u51B3_u8FC7_u7A0B"><a href="#u89E3_u51B3_u8FC7_u7A0B" class="headerlink" title="解决过程"></a>解决过程</h3><p>上网搜解决方案,通过<a href="https://docs.kali.org/general-use/kali-linux-virtual-box-guest" target="_blank" rel="external">官方文档</a>了解到需要安装增强工具.照做之后仍然无法调整屏幕分辨率.<br> 于是尝试使用官网上旧的方案安装,按照<a href="http://jingyan.baidu.com/article/73c3ce28e6b899e50343d92f.html" target="_blank" rel="external">百度经验</a><br>尝试安装.报错.被告知先要执行<br><code>apt-get install gcc make linux-headers-$(uname -r)</code><br>执行报错.报错为:<br><code>Unable to locate package &#39;linux-headers-4.9.0-kali3-amd64&#39;</code><br> 然后我在<br><a href="https://unix.stackexchange.com/questions/266871/cannot-find-linux-headers-4-3-0-kali-amd64" target="_blank" rel="external">某个外国论坛</a><br>按照教程更新了内核,重新尝试,仍然报错.<br>继续寻找解决方案.翻遍了互联网,仍然不行.<br>无奈之下考虑版本冲突.原来的virtualbox 版本为5.024 .更新到当前最新的5.1.22后重启虚拟机安装直接成功,重启后分辨率可调节:<br><img src="/images/pasted-4.png" alt="upload successful">  </p>
+<h3 id="u611F_u609F"><a href="#u611F_u609F" class="headerlink" title="感悟"></a>感悟</h3><p>官网文档一般不会出错,出错后考虑版本环境问题.<br>还是自己太菜了,此外kali的图标真的帅,甩出ubuntu,红帽,centos20条街.</p>
 
     
 
@@ -602,7 +602,7 @@
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/archives/2017/07/">七月 2017<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/06/">六月 2017<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/11/">十一月 2016<span class="sidebar_archives-count">12</span></a>
+                <a class="sidebar_archives-link" href="/archives/2017/07/">七月 2017<span class="sidebar_archives-count">8</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/06/">六月 2017<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/11/">十一月 2016<span class="sidebar_archives-count">12</span></a>
             </ul>
         </li>
         
@@ -620,7 +620,7 @@
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/android/">android<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/java/">java<span class="sidebar_archives-count">12</span></a></li><li><a class="sidebar_archives-link" href="/categories/linux/">linux<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/安全/">安全<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/安卓/">安卓<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/笔记/">笔记<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/胡言乱语/">胡言乱语<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/设计/">设计<span class="sidebar_archives-count">1</span></a>
+                <a class="sidebar_archives-link" href="/categories/android/">android<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/java/">java<span class="sidebar_archives-count">12</span></a></li><li><a class="sidebar_archives-link" href="/categories/linux/">linux<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/python/">python<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/安全/">安全<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/安卓/">安卓<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/笔记/">笔记<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/编程/">编程<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/胡言乱语/">胡言乱语<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/设计/">设计<span class="sidebar_archives-count">1</span></a>
             </ul>
         </li>
         

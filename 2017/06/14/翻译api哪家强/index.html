@@ -323,7 +323,7 @@
 
     
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#问题"><span class="post-toc-text">问题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#信息"><span class="post-toc-text">信息</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#方案"><span class="post-toc-text">方案</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#u95EE_u9898"><span class="post-toc-text">问题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#u4FE1_u606F"><span class="post-toc-text">信息</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#u65B9_u6848"><span class="post-toc-text">方案</span></a></li></ol>
     </ul>
     
 
@@ -454,9 +454,9 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a><span style="color:blue">问题</span></h3><p>今天遇到一个场景.需要将5500个单词从英文转为中文存到数据库中去,同时需要的存储的还有它们的音标.<br>由于数据量并不是很大,写一个循环调用5500次网上的翻译api就好了,但是在选择api上难到了我.  </p>
-<h3 id="信息"><a href="#信息" class="headerlink" title="信息"></a>信息</h3><p>首先需要说明的是所有的这些翻译网站都可以通过模拟请求来爬出翻译来,但是代码会难一些.所以还是找一些现成的比较方便.最终找到了几个api如下表:<br><img src="/images/pasted-1.png" alt="api对比图">  </p>
-<h3 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h3><p>有道17年5月的时候更新了一次,以前的api变了.之前的api每到1000次的时候就会被限制,新的使用起来又复杂了一些.百度的返回值没有看见音标.扇贝的不用申请key.但是请求500次之后ip被限制,结合使用场景最终选择了金山词霸.<br>写了个循环读取网站上json的小程序拿到了数据,插入了数据库当中.</p>
+        <h3 id="u95EE_u9898"><a href="#u95EE_u9898" class="headerlink" title="问题"></a><span style="color:blue">问题</span></h3><p>今天遇到一个场景.需要将5500个单词从英文转为中文存到数据库中去,同时需要的存储的还有它们的音标.<br>由于数据量并不是很大,写一个循环调用5500次网上的翻译api就好了,但是在选择api上难到了我.  </p>
+<h3 id="u4FE1_u606F"><a href="#u4FE1_u606F" class="headerlink" title="信息"></a>信息</h3><p>首先需要说明的是所有的这些翻译网站都可以通过模拟请求来爬出翻译来,但是代码会难一些.所以还是找一些现成的比较方便.最终找到了几个api如下表:<br><img src="/images/pasted-1.png" alt="api对比图">  </p>
+<h3 id="u65B9_u6848"><a href="#u65B9_u6848" class="headerlink" title="方案"></a>方案</h3><p>有道17年5月的时候更新了一次,以前的api变了.之前的api每到1000次的时候就会被限制,新的使用起来又复杂了一些.百度的返回值没有看见音标.扇贝的不用申请key.但是请求500次之后ip被限制,结合使用场景最终选择了金山词霸.<br>写了个循环读取网站上json的小程序拿到了数据,插入了数据库当中.</p>
 
     
 
@@ -602,7 +602,7 @@
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/archives/2017/07/">七月 2017<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/06/">六月 2017<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/11/">十一月 2016<span class="sidebar_archives-count">12</span></a>
+                <a class="sidebar_archives-link" href="/archives/2017/07/">七月 2017<span class="sidebar_archives-count">8</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/06/">六月 2017<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/11/">十一月 2016<span class="sidebar_archives-count">12</span></a>
             </ul>
         </li>
         
@@ -620,7 +620,7 @@
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/android/">android<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/java/">java<span class="sidebar_archives-count">12</span></a></li><li><a class="sidebar_archives-link" href="/categories/linux/">linux<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/安全/">安全<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/安卓/">安卓<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/笔记/">笔记<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/胡言乱语/">胡言乱语<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/设计/">设计<span class="sidebar_archives-count">1</span></a>
+                <a class="sidebar_archives-link" href="/categories/android/">android<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/java/">java<span class="sidebar_archives-count">12</span></a></li><li><a class="sidebar_archives-link" href="/categories/linux/">linux<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/python/">python<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/安全/">安全<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/安卓/">安卓<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/笔记/">笔记<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/编程/">编程<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/胡言乱语/">胡言乱语<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/设计/">设计<span class="sidebar_archives-count">1</span></a>
             </ul>
         </li>
         

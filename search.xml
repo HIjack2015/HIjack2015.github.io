@@ -3,10 +3,123 @@
   
     
     <entry>
+      <title><![CDATA[python爬虫初体验]]></title>
+      <url>/2017/07/22/python%E7%88%AC%E8%99%AB%E5%88%9D%E4%BD%93%E9%AA%8C/</url>
+      <content type="html"><![CDATA[<h3 id="u5199_u5728_u524D_u8FB9"><a href="#u5199_u5728_u524D_u8FB9" class="headerlink" title="写在前边"></a>写在前边</h3><p>最近python爬虫大火,我这样一个java的忠实粉丝也忍不住去python官网看了看文档.搭环境写了几个demo.你还别说,真的给我一种很”锋利”的感觉,远比什么 c sharp 锋利的多.</p>
+<h3 id="u7B80_u5355_u7684_u722C_u866B"><a href="#u7B80_u5355_u7684_u722C_u866B" class="headerlink" title="简单的爬虫."></a>简单的爬虫.</h3><p>出于某种需要,我要爬一本单词,网址如下<a href="https://www.shanbay.com/wordbook/115978/" target="_blank" rel="external">一本英文词典</a>.我的目标是爬下所有的英文单词.说干就干!<br>先分析一下,这个单词书有2000多单词,分为16个网页: <a href="https://www.shanbay.com/wordbook/115978/123" target="_blank" rel="external">https://www.shanbay.com/wordbook/115978/123</a>, 每个网页又分为10个page :<a href="https://www.shanbay.com/wordbook/115978/123?page=1" target="_blank" rel="external">https://www.shanbay.com/wordbook/115978/123?page=1</a>.<br>我觉得构建这10*16个网页url还是直接在浏览器控制台构建好了.回顾了一下jquery的语法,写出代码如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">urls=[]</div><div class="line">for( i=0;i&lt;$(&quot;.wordbook-wordlist-name&quot;).length;i++) &#123;</div><div class="line">	var url= $($(&quot;.wordbook-wordlist-name&quot;)[i].children[0]).attr(&apos;href&apos;)</div><div class="line">	urls.push(&apos;https://www.shanbay.com&apos;+url)</div><div class="line">&#125;</div><div class="line">for(i=0;i&lt;urls.length;i++) &#123;</div><div class="line">	for(j=1;j&lt;11;j++) &#123;</div><div class="line">		console.log(urls[i]+&apos;?page=&apos;+j)</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>得到了所有的url.然后找一个python download函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">import urllib3</div><div class="line"></div><div class="line">http = urllib3.PoolManager()</div><div class="line">def download(urlToDown):</div><div class="line">    fp = http.request(&apos;GET&apos;,urlToDown)</div><div class="line">    return fp.data.decode(&apos;utf-8&apos;);</div></pre></td></tr></table></figure></p>
+<p>下载一个html的content只需要4行!这里我不得不和java的对比一下(随手写的,不确定可以执行):<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">import java.nio.charset.Charset;</div><div class="line">import org.apache.http.client.methods.CloseableHttpResponse;</div><div class="line">import org.apache.http.client.methods.HttpGet;</div><div class="line">import org.apache.http.client.methods.HttpUriRequest;</div><div class="line">import org.apache.http.client.methods.RequestBuilder;</div><div class="line">import org.apache.http.impl.client.CloseableHttpClient;</div><div class="line">import org.apache.http.impl.client.HttpClients;</div><div class="line">import org.apache.http.util.EntityUtils;</div><div class="line"> private CloseableHttpClient httpclient = HttpClients.custom()</div><div class="line">            .setDefaultCookieStore(cookieStore).build();</div><div class="line"></div><div class="line">    public String download(String url) &#123;</div><div class="line">        HttpGet httpget = new HttpGet(url);</div><div class="line">        try &#123;</div><div class="line">            CloseableHttpResponse response3 = httpclient.execute(httpget);</div><div class="line">            String content = EntityUtils.toString(response3.getEntity(),</div><div class="line">                    Charset.forName(&quot;utf8&quot;));</div><div class="line">            return content;</div><div class="line">        &#125; catch (Exception e) &#123;</div><div class="line">            return e.toString();</div><div class="line"></div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>然后是取目标单词.考虑在html中单词元素有特征如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;td class=&quot;span2&quot;&gt;&lt;strong&gt;wrapped&lt;/strong&gt;&lt;/td&gt;&lt;/code&gt;</div></pre></td></tr></table></figure></p>
+<p>直接用正则就好了.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">allWord=[]</div><div class="line">def getWordFromUrl(shanBeiUrl):</div><div class="line">    content= download(shanBeiUrl)</div><div class="line">    words= re.findall(&apos;&lt;td class=&quot;span2&quot;&gt;&lt;strong&gt;(.*?)&lt;/strong&gt;&lt;/td&gt;&apos;, content)</div><div class="line">    allWord.extend(words)</div><div class="line">    return</div></pre></td></tr></table></figure></p>
+<p>再加上循环和输出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">for shanbeiUrl in shanBeiUrls:</div><div class="line">    getWordFromUrl(shanbeiUrl)</div><div class="line">    </div><div class="line">print(allWord)</div></pre></td></tr></table></figure></p>
+<p>代码加一块不到20行!我的天!之前用java写类似的程序,花了半天的时间,定义了5个类,20几个方法.还美滋滋的认为自己面向对象了..以下是去年写的爬公司oa的java代码.<br><img src="/images/pasted-19.png" alt="upload successful"></p>
+<h3 id="python_u548Cjava_u7684_u533A_u522B_3F"><a href="#python_u548Cjava_u7684_u533A_u522B_3F" class="headerlink" title="python和java的区别?"></a>python和java的区别?</h3><p>以我长达三小时的python学习来说.他们的区别有如下几点,</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th style="text-align:center">java</th>
+<th style="text-align:right">python</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>语法</td>
+<td style="text-align:center">有些繁复.<br>另外为了命名清晰,函数和变量总是特别长.</td>
+<td style="text-align:right">十分简单,没有花括号,不用加引号,使用缩进代替<br>各种命名都力求简洁</td>
+</tr>
+<tr>
+<td>集合处理</td>
+<td style="text-align:center">难之又难,(每个操作)</td>
+<td style="text-align:right">简单得很</td>
+</tr>
+<tr>
+<td>库</td>
+<td style="text-align:center">很多很多,我从来没有遇到找不到想要的库找不到的情况</td>
+<td style="text-align:right">据说python以库多著称</td>
+</tr>
+<tr>
+<td>使用范围</td>
+<td style="text-align:center">作为一个java的粉丝,我认为java适用范围很广,就算是写脚本也可以用groovy啊.</td>
+<td style="text-align:right">这个比java还是差了点吧,至少2016毕业的时候以python为主的公司就遇到过3家</td>
+</tr>
+</tbody>
+</table>
+<h3 id="u611F_u89E6"><a href="#u611F_u89E6" class="headerlink" title="感触."></a>感触.</h3><ol>
+<li>面向对象不是银弹,设计模式也不是.黑猫白猫.高效,稳定,快速,安全,可扩展的抓住老鼠的猫才是好猫.</li>
+<li>估计某个项目会尝试使用python作为后台.请期待下一篇.</li>
+</ol>
+]]></content>
+      
+        <categories>
+            
+            <category> python </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 爬虫 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[green dao 返回的结果都是相同的??]]></title>
+      <url>/2017/07/21/green-dao-%E8%BF%94%E5%9B%9E%E7%9A%84%E7%BB%93%E6%9E%9C%E9%83%BD%E6%98%AF%E7%9B%B8%E5%90%8C%E7%9A%84/</url>
+      <content type="html"><![CDATA[<h3 id="u95EE_u9898_u6765_u6E90"><a href="#u95EE_u9898_u6765_u6E90" class="headerlink" title="问题来源"></a>问题来源</h3><p>今天写程序尝试从sqlite db中取出一个列表,orm用的是greendao,代码如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">List&lt;SolveStep&gt; solveSteps= solveStepDao.queryBuilder()</div><div class="line">            .where(SolveStepDao.Properties.PuzzleId.eq(puzzleId))</div><div class="line">            .orderAsc(SolveStepDao.Properties.Sequence)</div><div class="line">            .build().list();</div></pre></td></tr></table></figure></p>
+<p>结果取出来的结果都是相同的,且都为数据库中的第一条记录:<br><img src="/images/pasted-18.png" alt="upload successful"></p>
+<h3 id="u89E3_u51B3_u8FC7_u7A0B"><a href="#u89E3_u51B3_u8FC7_u7A0B" class="headerlink" title="解决过程"></a>解决过程</h3><p>按照我解决问题的思路,首先去google搜索如下关键字.<b>greendao result same error</b>,然后打开前几个结果.竟然都和我的问题没关系.我陷入了深深的沉思.</p>
+<ol>
+<li>莫不是数据库中的数据就是相同的?仔细查询发现并不是.</li>
+<li>莫不是greendao的缓存机制出了问题?看了一会文档,觉得<code>list()</code>这个函数没什么问题.</li>
+<li>莫不是android studio 或者设备出了问题? 全部重启,问题还在.</li>
+<li>哪里写错了触发了隐藏bug? 没有啊…以前也是这么写的…</li>
+<li>真的是灵异事件???</li>
+</ol>
+<p>我觉得这样下去是解决不了问题的.从头分析一下吧</p>
+<ol>
+<li>list中都是同一个对象的引用.</li>
+<li>list中的那个对象是正确结果集中的第一个.<br>所以是由于某种原因导致greendao查询完第一个结果之后不再继续查询.转而从缓存中拿数据.<br>那么greendao是根据什么来判断缓存中已经有这个记录了呢?<b>ID</b>,我赶紧打开model来看.<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">@Entity</div><div class="line">public class SolveStep &#123;</div><div class="line">    @Id</div><div class="line">    private Integer puzzleId;</div><div class="line"></div><div class="line">    private Integer stepNo;</div><div class="line"></div><div class="line">    private String pointToMove;</div><div class="line"></div><div class="line">    private Integer direction;</div><div class="line"></div><div class="line">    </div><div class="line">    private Integer id;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>这里的 puzzleId并不是主键,而是外键.也是查询的条件.真正的主键是 Id,<code>@Id</code>这个注解标错了位置.才导致了这个问题的出现.</p>
+<h3 id="u611F_u609F"><a href="#u611F_u609F" class="headerlink" title="感悟"></a>感悟</h3><p>谷歌不是万能的.它拯救不了一个傻逼,遇到问题还是要从蛛丝马迹推断,以及不细心的话不仅考不了高分.写代码效率也会特别低.</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 编程 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> orm </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[一份正确的mybatis gen xml for sqlite db]]></title>
+      <url>/2017/07/19/%E4%B8%80%E4%BB%BD%E6%AD%A3%E7%A1%AE%E7%9A%84mybatis-gen-xml-for-sqlite-db/</url>
+      <content type="html"><![CDATA[<h3 id="u5199_u5728_u524D_u9762"><a href="#u5199_u5728_u524D_u9762" class="headerlink" title="写在前面."></a>写在前面.</h3><p>每次给sqlite db 中的表生成model时都要折腾半天 mybatis generator.这东西唯一的好处就是大表不用写很长的java bean.现在备份一份完整可用的.以后都按照这份配置就好了.</p>
+<h3 id="u914D_u7F6E_u6587_u4EF6"><a href="#u914D_u7F6E_u6587_u4EF6" class="headerlink" title="配置文件"></a>配置文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</div><div class="line">&lt;!DOCTYPE generatorConfiguration PUBLIC &quot;-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN&quot; &quot;http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd&quot;&gt;</div><div class="line">&lt;generatorConfiguration&gt;</div><div class="line"></div><div class="line">	&lt;classPathEntry location=&quot;L:\jar\sqlite-jdbc-3.7.2.jar&quot;&gt;&lt;/classPathEntry&gt;</div><div class="line"></div><div class="line">	&lt;context id=&quot;context1&quot;&gt;</div><div class="line">		&lt;!-- 不需要注释 --&gt;</div><div class="line">		&lt;commentGenerator&gt;</div><div class="line">			&lt;property name=&quot;suppressAllComments&quot; value=&quot;true&quot; /&gt;</div><div class="line">		&lt;/commentGenerator&gt;</div><div class="line">		&lt;jdbcConnection driverClass=&quot;org.sqlite.JDBC&quot;</div><div class="line">			connectionURL=&quot;jdbc:sqlite:K:\dbName.db&quot;</div><div class="line">			userId=&quot;&quot; password=&quot;&quot;&gt;</div><div class="line">		&lt;/jdbcConnection&gt;</div><div class="line">		&lt;javaModelGenerator targetPackage=&quot;model&quot;</div><div class="line">			targetProject=&quot;myBatisGen2&quot;&gt;&lt;/javaModelGenerator&gt;</div><div class="line">		&lt;sqlMapGenerator targetPackage=&quot;model&quot; targetProject=&quot;myBatisGen2&quot;&gt;&lt;/sqlMapGenerator&gt;</div><div class="line">		&lt;javaClientGenerator targetPackage=&quot;model&quot;</div><div class="line">			targetProject=&quot;myBatisGen2&quot; type=&quot;XMLMAPPER&quot;&gt;&lt;/javaClientGenerator&gt;</div><div class="line"></div><div class="line">		&lt;table tableName=&quot;puzzle&quot;&gt;</div><div class="line"></div><div class="line">		&lt;/table&gt;</div><div class="line">	&lt;/context&gt;</div><div class="line">&lt;/generatorConfiguration&gt;</div></pre></td></tr></table></figure>
+<p>只要以后照着这份配置应该就没什么问题了.</p>
+]]></content>
+      
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[上架一个app前需要做什么]]></title>
       <url>/2017/07/14/%E4%B8%8A%E6%9E%B6%E4%B8%80%E4%B8%AAapp%E5%89%8D%E9%9C%80%E8%A6%81%E5%81%9A%E4%BB%80%E4%B9%88/</url>
-      <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>如果你是一个安卓独立应用开发者,如果你从来没有上架过应用,那么这篇文章可能会帮到你.</p>
-<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ol>
+      <content type="html"><![CDATA[<h3 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言</h3><p>如果你是一个安卓独立应用开发者,如果你从来没有上架过应用,那么这篇文章可能会帮到你.</p>
+<h3 id="u6B65_u9AA4"><a href="#u6B65_u9AA4" class="headerlink" title="步骤"></a>步骤</h3><ol>
 <li>新建密钥库,新建密钥,签名的时候要用.   </li>
 <li>找一份适合自己的混淆文件.混淆文件可以帮助你混淆你的源码,如果不混淆和开源没什么区别,就算你打算开源,也应该配置混淆以减小压缩包的体积.</li>
 <li>第三方加固,再次加大反编译的难度,且有些应用市场不再次加固无法上架.</li>
@@ -23,7 +136,7 @@
 </li>
 <li>上传应用等待审核通过.   </li>
 </ol>
-<h3 id="胡说八道"><a href="#胡说八道" class="headerlink" title="胡说八道"></a>胡说八道</h3><p>至少从现在看来,成为一个独立开发者并不是一个很好的选择,经济来源无非是 捐赠,广告.除非自己注册一个公司,否则无法引入付费应用和会员机制.广告有人喷,捐款没人捐.可能我还是该找个地方去上班吧.继续去写不想写的代码.但是在那之前还是坚持一下吧.</p>
+<h3 id="u80E1_u8BF4_u516B_u9053"><a href="#u80E1_u8BF4_u516B_u9053" class="headerlink" title="胡说八道"></a>胡说八道</h3><p>至少从现在看来,成为一个独立开发者并不是一个很好的选择,经济来源无非是 捐赠,广告.除非自己注册一个公司,否则无法引入付费应用和会员机制.广告有人喷,捐款没人捐.可能我还是该找个地方去上班吧.继续去写不想写的代码.但是在那之前还是坚持一下吧.</p>
 ]]></content>
       
         <categories>
@@ -38,11 +151,11 @@
     <entry>
       <title><![CDATA[java中的NULL和null]]></title>
       <url>/2017/07/12/java%E4%B8%AD%E7%9A%84NULL%E5%92%8Cnull/</url>
-      <content type="html"><![CDATA[<h3 id="问题来源"><a href="#问题来源" class="headerlink" title="问题来源"></a>问题来源</h3><p>众所周知,java的语法中是没有NULL的,那我为什么要起一个骇人听闻的标题呢?昨天code的时候,我给一个Integer赋值为空,但是debug发现它的值为0.</p>
-<h3 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h3><p>我很恐慌,觉得自己的认知受到了颠覆,开始看Integer的自动装箱.开始四处查资料,两个小时过去了,我发现我的赋值语句是这样的.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Integer i=NULL;</div></pre></td></tr></table></figure></p>
+      <content type="html"><![CDATA[<h3 id="u95EE_u9898_u6765_u6E90"><a href="#u95EE_u9898_u6765_u6E90" class="headerlink" title="问题来源"></a>问题来源</h3><p>众所周知,java的语法中是没有NULL的,那我为什么要起一个骇人听闻的标题呢?昨天code的时候,我给一个Integer赋值为空,但是debug发现它的值为0.</p>
+<h3 id="u89E3_u51B3_u8FC7_u7A0B"><a href="#u89E3_u51B3_u8FC7_u7A0B" class="headerlink" title="解决过程"></a>解决过程</h3><p>我很恐慌,觉得自己的认知受到了颠覆,开始看Integer的自动装箱.开始四处查资料,两个小时过去了,我发现我的赋值语句是这样的.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Integer i=NULL;</div></pre></td></tr></table></figure></p>
 <p>我发现了有哪里不对,我点到NULL的声明里边去.发现这个变量位于java.sql,类名为Types<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * &lt;P&gt;The constant in the Java programming language</div><div class="line"> * that identifies the generic SQL value</div><div class="line"> * &lt;code&gt;NULL&lt;/code&gt;.</div><div class="line"> */</div><div class="line">        public final static int NULL            =   0;</div></pre></td></tr></table></figure></p>
 <p>额,原来是手残拼错了.我的两个小时啊….</p>
-<h3 id="感悟"><a href="#感悟" class="headerlink" title="感悟"></a>感悟</h3><p> 最近换了新的ide,intellja 会自动加入静态引用,而eclipse不会,也许之前也拼错过,但是eclipse会报错吧.<br>感悟就是:关注语法,注意保留关键字.注意代码中不同单词在ide中颜色不一样.<br>以及google和stackoverflow也不是全能的,它们拯救不了一个傻逼.</p>
+<h3 id="u611F_u609F"><a href="#u611F_u609F" class="headerlink" title="感悟"></a>感悟</h3><p> 最近换了新的ide,intellja 会自动加入静态引用,而eclipse不会,也许之前也拼错过,但是eclipse会报错吧.<br>感悟就是:关注语法,注意保留关键字.注意代码中不同单词在ide中颜色不一样.<br>以及google和stackoverflow也不是全能的,它们拯救不了一个傻逼.</p>
 ]]></content>
       
         
@@ -51,7 +164,7 @@
     <entry>
       <title><![CDATA[代码整洁之道笔记]]></title>
       <url>/2017/07/08/%E4%BB%A3%E7%A0%81%E6%95%B4%E6%B4%81%E4%B9%8B%E9%81%93%E7%AC%94%E8%AE%B0/</url>
-      <content type="html"><![CDATA[<h3 id="写在前边"><a href="#写在前边" class="headerlink" title="写在前边"></a>写在前边</h3><p>随着我的项目功能点越来越多,项目持续时间也越来越长.我开始看着以前的代码发呆:</p>
+      <content type="html"><![CDATA[<h3 id="u5199_u5728_u524D_u8FB9"><a href="#u5199_u5728_u524D_u8FB9" class="headerlink" title="写在前边"></a>写在前边</h3><p>随着我的项目功能点越来越多,项目持续时间也越来越长.我开始看着以前的代码发呆:</p>
 <ul>
 <li>这个变量,这个方法,这个类是干什么用的?</li>
 <li>为什么已经在努力,仍然有一些重复的代码?</li>
@@ -63,7 +176,7 @@
 <li>为什么我不像是写代码,而是像写bug? </li>
 </ul>
 <p>我越来越力不从心,我需要一个银弹.于是我决定找出以前草草读过的&lt;代码整洁之道&gt;,再认真的结合项目读一遍,并做一些笔记.(我始终认为每个java程序员都应该读一读这本书,这既是为自己好,也是对同事的仁慈).</p>
-<h3 id="琐碎的笔记和感悟"><a href="#琐碎的笔记和感悟" class="headerlink" title="琐碎的笔记和感悟"></a>琐碎的笔记和感悟</h3><h4 id="童子军军规"><a href="#童子军军规" class="headerlink" title="童子军军规"></a>童子军军规</h4><pre><code>让营地比你来的时候更干净.
+<h3 id="u7410_u788E_u7684_u7B14_u8BB0_u548C_u611F_u609F"><a href="#u7410_u788E_u7684_u7B14_u8BB0_u548C_u611F_u609F" class="headerlink" title="琐碎的笔记和感悟"></a>琐碎的笔记和感悟</h3><h4 id="u7AE5_u5B50_u519B_u519B_u89C4"><a href="#u7AE5_u5B50_u519B_u519B_u89C4" class="headerlink" title="童子军军规"></a>童子军军规</h4><pre><code>让营地比你来的时候更干净.
 </code></pre><p>如果每次签入时,代码都比签出时干净,那么代码就不会腐坏,清理并一定要花多少时间,也许只是改好一个变量名,拆分一个有点过长的函数,消除一点点重复的代码,清理一个嵌套的if.<br><small>感悟:也许我该看一看svn的提交记录,并且每次提交前先运行两遍code inspect.  此外 .</small></p>
 ]]></content>
       
@@ -87,9 +200,9 @@
     <entry>
       <title><![CDATA[关于设计的笔记]]></title>
       <url>/2017/07/08/%E5%85%B3%E4%BA%8E%E8%AE%BE%E8%AE%A1%E7%9A%84%E7%AC%94%E8%AE%B0/</url>
-      <content type="html"><![CDATA[<h3 id="写在前边"><a href="#写在前边" class="headerlink" title="写在前边"></a>写在前边</h3><p>最近在尝试成为一个可以养活自己的独立开发者,虽然会有些难,但我仍想试一下.做一个好的app,设计必不可少.但这可难到了我,从ui,到ue,我都是一窍不通.所以开始看书看视频提高自己的设计水平. 并做了一些笔记.同时也希望能对你有所帮助.  </p>
-<h5 id="关于创新"><a href="#关于创新" class="headerlink" title="关于创新"></a>关于创新</h5><p>世间没有无缘无故的爱恨情愁，更没有空中阁楼而来的灵动设计。每一个曾经瞬间探触过你内心深处的设计，背后必有缘由。问渠哪得清如许，为有源头活水来。再说创新，对这个永恒的话题，我们发现，创新从来都不刻意苛求而来的，我们的做法就是彻底忘掉这个词。设身处地地研究和理解用户，然后以挑剔和挑战的态度不断迭代并尝试更好的解决方案。直到有一天，开始有人惊呼，于是，所谓的创新就出现了。<br>来自 <em>在你身边,为你设计-腾讯的用户体验设计之道</em><br><small>感悟: 大家都喜欢黑腾讯靠抄起家,但是很多被’抄’的产品都死了,而腾讯的产品垄断了市场.也许在做产品的时候,我们缺的不是一个好的想法,而是一个<b>设身处地的研究和理解用户,以挑剔和挑战的态度不断迭代和尝试更好的解决方案</b>的做事态度吧.</small></p>
-<h5 id="关于注册和登录"><a href="#关于注册和登录" class="headerlink" title="关于注册和登录"></a>关于注册和登录</h5><p>也许十年前我们需要精心设计一个适合用户的注册和登录表单,但是现在最好的方式是使用微信和微博登录(并提供可选的表单注册).<br>来自<a href="https://classroom.udacity.com/courses/ud849" target="_blank" rel="external">优达学城-UE设计</a><br><small>感悟:他说的很对,用户其实不想输入任何东西,这也算是一种创新了.</small></p>
+      <content type="html"><![CDATA[<h3 id="u5199_u5728_u524D_u8FB9"><a href="#u5199_u5728_u524D_u8FB9" class="headerlink" title="写在前边"></a>写在前边</h3><p>最近在尝试成为一个可以养活自己的独立开发者,虽然会有些难,但我仍想试一下.做一个好的app,设计必不可少.但这可难到了我,从ui,到ue,我都是一窍不通.所以开始看书看视频提高自己的设计水平. 并做了一些笔记.同时也希望能对你有所帮助.  </p>
+<h5 id="u5173_u4E8E_u521B_u65B0"><a href="#u5173_u4E8E_u521B_u65B0" class="headerlink" title="关于创新"></a>关于创新</h5><p>世间没有无缘无故的爱恨情愁，更没有空中阁楼而来的灵动设计。每一个曾经瞬间探触过你内心深处的设计，背后必有缘由。问渠哪得清如许，为有源头活水来。再说创新，对这个永恒的话题，我们发现，创新从来都不刻意苛求而来的，我们的做法就是彻底忘掉这个词。设身处地地研究和理解用户，然后以挑剔和挑战的态度不断迭代并尝试更好的解决方案。直到有一天，开始有人惊呼，于是，所谓的创新就出现了。<br>来自 <em>在你身边,为你设计-腾讯的用户体验设计之道</em><br><small>感悟: 大家都喜欢黑腾讯靠抄起家,但是很多被’抄’的产品都死了,而腾讯的产品垄断了市场.也许在做产品的时候,我们缺的不是一个好的想法,而是一个<b>设身处地的研究和理解用户,以挑剔和挑战的态度不断迭代和尝试更好的解决方案</b>的做事态度吧.</small></p>
+<h5 id="u5173_u4E8E_u6CE8_u518C_u548C_u767B_u5F55"><a href="#u5173_u4E8E_u6CE8_u518C_u548C_u767B_u5F55" class="headerlink" title="关于注册和登录"></a>关于注册和登录</h5><p>也许十年前我们需要精心设计一个适合用户的注册和登录表单,但是现在最好的方式是使用微信和微博登录(并提供可选的表单注册).<br>来自<a href="https://classroom.udacity.com/courses/ud849" target="_blank" rel="external">优达学城-UE设计</a><br><small>感悟:他说的很对,用户其实不想输入任何东西,这也算是一种创新了.</small></p>
 ]]></content>
       
         <categories>
@@ -110,13 +223,13 @@
     <entry>
       <title><![CDATA[如何调试已签名的release包]]></title>
       <url>/2017/07/04/%E5%A6%82%E4%BD%95%E8%B0%83%E8%AF%95%E5%B7%B2%E7%AD%BE%E5%90%8D%E7%9A%84release%E5%8C%85/</url>
-      <content type="html"><![CDATA[<h3 id="问题来源"><a href="#问题来源" class="headerlink" title="问题来源"></a>问题来源</h3><p>最近调试android应用时遇到了一个问题,在debug模式下应用跑的很好,但是安装签了名的release包就出现奇怪的错误.此外有些sdk必须在签名后才能调用,所以调试签名后的release包是很有必要的.</p>
-<h3 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h3><p>首先去搜资料,发现大都很旧了,找了半天找到了这个.<br>首先 在build variant 中调整模式为release.<br><img src="/images/pasted-15.png" alt="upload successful"><br>然后File-project structure 进行签名配置.<br><img src="/images/pasted-17.png" alt="upload successful"><br><img src="/images/pasted-16.png" alt="upload successful"><br>这样就可以调试签名过的app了.但是调试时发现了另一个问题.</p>
-<h3 id="另一个问题"><a href="#另一个问题" class="headerlink" title="另一个问题"></a>另一个问题</h3><p>无法下断点,下断点后不跑断点处.上网搜索发现是因为proguard.pro没有配置这个</p>
+      <content type="html"><![CDATA[<h3 id="u95EE_u9898_u6765_u6E90"><a href="#u95EE_u9898_u6765_u6E90" class="headerlink" title="问题来源"></a>问题来源</h3><p>最近调试android应用时遇到了一个问题,在debug模式下应用跑的很好,但是安装签了名的release包就出现奇怪的错误.此外有些sdk必须在签名后才能调用,所以调试签名后的release包是很有必要的.</p>
+<h3 id="u89E3_u51B3_u8FC7_u7A0B"><a href="#u89E3_u51B3_u8FC7_u7A0B" class="headerlink" title="解决过程"></a>解决过程</h3><p>首先去搜资料,发现大都很旧了,找了半天找到了这个.<br>首先 在build variant 中调整模式为release.<br><img src="/images/pasted-15.png" alt="upload successful"><br>然后File-project structure 进行签名配置.<br><img src="/images/pasted-17.png" alt="upload successful"><br><img src="/images/pasted-16.png" alt="upload successful"><br>这样就可以调试签名过的app了.但是调试时发现了另一个问题.</p>
+<h3 id="u53E6_u4E00_u4E2A_u95EE_u9898"><a href="#u53E6_u4E00_u4E2A_u95EE_u9898" class="headerlink" title="另一个问题"></a>另一个问题</h3><p>无法下断点,下断点后不跑断点处.上网搜索发现是因为proguard.pro没有配置这个</p>
 <pre><code>-renamesourcefileattribute SourceFile   
 -keepattributes SourceFile,LineNumberTable
 </code></pre><p>加入配置后可以正常调试.最终发现问题是 proguard.pro不该混淆内容少配置了,导致混淆了不该混淆的内容.</p>
-<h3 id="我的感悟"><a href="#我的感悟" class="headerlink" title="我的感悟"></a>我的感悟</h3><p>什么面向对象编程,面向函数编程.分明是面向google和面向stack over flow 编程.</p>
+<h3 id="u6211_u7684_u611F_u609F"><a href="#u6211_u7684_u611F_u609F" class="headerlink" title="我的感悟"></a>我的感悟</h3><p>什么面向对象编程,面向函数编程.分明是面向google和面向stack over flow 编程.</p>
 ]]></content>
       
         
@@ -125,12 +238,12 @@
     <entry>
       <title><![CDATA[换手机号引发的血案]]></title>
       <url>/2017/06/29/%E6%8D%A2%E6%89%8B%E6%9C%BA%E5%8F%B7%E5%BC%95%E5%8F%91%E7%9A%84%E8%A1%80%E6%A1%88/</url>
-      <content type="html"><![CDATA[<h3 id="问题来源"><a href="#问题来源" class="headerlink" title="问题来源"></a>问题来源</h3><p>最近我换了一次手机号.用新手机号注册支付宝的时候,发现这个手机号已经有人注册过了,称之为A.<br><img src="/images/pasted-5.png" alt="upload successful">我突然好奇,我可以通过这个手机号,通过合法的手段,挖出这个有缘人A的哪些信息呢?</p>
-<h3 id="搞事情"><a href="#搞事情" class="headerlink" title="搞事情"></a>搞事情</h3><p>既然注册过支付宝,就从支付宝下手把<br><img src="/images/pasted-7.png" alt="upload successful"><br><img src="/images/pasted-8.png" alt="upload successful">通过手机号重置密码成功.相同的方式重置了淘宝密码.查看历史订单<br><img src="/images/pasted-9.png" alt="upload successful"><br>大多是吉他篮球和电子产品.顺势找到了收货地址.<br><img src="/images/pasted-10.png" alt="upload successful"><br>上边一条收过护腰的东西,大概是A的长辈吧,下边两个是天津的同一个住址.而且姓名还是明显的一男一女,估计是A和A的女友了.<br>已经有了姓名(从收货地址)接下来就是找到身份证号了.<br><img src="/images/pasted-6.png" alt="upload successful"> </p>
+      <content type="html"><![CDATA[<h3 id="u95EE_u9898_u6765_u6E90"><a href="#u95EE_u9898_u6765_u6E90" class="headerlink" title="问题来源"></a>问题来源</h3><p>最近我换了一次手机号.用新手机号注册支付宝的时候,发现这个手机号已经有人注册过了,称之为A.<br><img src="/images/pasted-5.png" alt="upload successful">我突然好奇,我可以通过这个手机号,通过合法的手段,挖出这个有缘人A的哪些信息呢?</p>
+<h3 id="u641E_u4E8B_u60C5"><a href="#u641E_u4E8B_u60C5" class="headerlink" title="搞事情"></a>搞事情</h3><p>既然注册过支付宝,就从支付宝下手把<br><img src="/images/pasted-7.png" alt="upload successful"><br><img src="/images/pasted-8.png" alt="upload successful">通过手机号重置密码成功.相同的方式重置了淘宝密码.查看历史订单<br><img src="/images/pasted-9.png" alt="upload successful"><br>大多是吉他篮球和电子产品.顺势找到了收货地址.<br><img src="/images/pasted-10.png" alt="upload successful"><br>上边一条收过护腰的东西,大概是A的长辈吧,下边两个是天津的同一个住址.而且姓名还是明显的一男一女,估计是A和A的女友了.<br>已经有了姓名(从收货地址)接下来就是找到身份证号了.<br><img src="/images/pasted-6.png" alt="upload successful"> </p>
 <p>登录支付宝发现需要验证信息,得到前4位后两位.根据倒数第二位是0还是1确认了性别.根据身份证构建规则6+8+2+1+1(详情百度).考虑长辈的收货地址.构建前6位,但是出生日期怎么办?开始百度 A的名字,结果很多.于是尝试百度手机号,发现并没有什么痕迹.于是百度A名字+A女友名字.<br><img src="/images/pasted-11.png" alt="upload successful"><br>找到了人人的空间.看了一眼相册.多是吉他,耳机….确认是同一个人.看个人信息.出生年月日.</p>
 <p><img src="/images/pasted-12.png" alt="upload successful"><br>现在只差中间两位了.生成100个身份证号校验,其中大概有15个符合规则.越小的约有可能性是A的身份证号.现在已经有了可能的身份证号,怎么验证对不对呢?  诚然之前工作中做过调用公安部的接口,但现在用它不太合适.不如试试实名认证吧,任意找一个防沉迷的系统,进行实名认证.成功.<br>之后翻看A的人人相册发现了这个:<br><img src="/images/pasted-13.png" alt="upload successful"><br>额,早知道就不这么麻烦了…<br>此外还有他的经历<br><img src="/images/pasted-14.png" alt="upload successful"><br>大概就这么多了,后续陆续有某个银行给我发交易的短信,我通过真实姓名+身份证号+银行预留手机号走到了重置密码这一步.但是为了避免给远在米国的A造成麻烦.并没有重置密码.  </p>
-<h3 id="不完美之处"><a href="#不完美之处" class="headerlink" title="不完美之处"></a>不完美之处</h3><p>支付宝使用时被告知需要重新认证,只能通过验证银行卡或是刷脸.我对着人人中A的照片试了试,结果并不能行,也没有什么好办法搞到他的银行卡号(也许重置密码后可以?)</p>
-<h3 id="结论"><a href="#结论" class="headerlink" title="结论."></a>结论.</h3><p>换手机号前一定要解绑所有帐号,尤其是涉及到敏感信息的.</p>
+<h3 id="u4E0D_u5B8C_u7F8E_u4E4B_u5904"><a href="#u4E0D_u5B8C_u7F8E_u4E4B_u5904" class="headerlink" title="不完美之处"></a>不完美之处</h3><p>支付宝使用时被告知需要重新认证,只能通过验证银行卡或是刷脸.我对着人人中A的照片试了试,结果并不能行,在网上找了很久图片建模工具找到.也没有也没有什么好办法搞到他的银行卡号(也许重置密码后可以?)</p>
+<h3 id="u7ED3_u8BBA"><a href="#u7ED3_u8BBA" class="headerlink" title="结论."></a>结论.</h3><p>换手机号前一定要解绑所有帐号,尤其是涉及到敏感信息的.</p>
 ]]></content>
       
         <categories>
@@ -162,9 +275,9 @@
     <entry>
       <title><![CDATA[kali+virtualbox调节屏幕分辨率]]></title>
       <url>/2017/06/25/kali-virtualbox%E8%B0%83%E8%8A%82%E5%B1%8F%E5%B9%95%E5%88%86%E8%BE%A8%E7%8E%87/</url>
-      <content type="html"><![CDATA[<h3 id="问题来源"><a href="#问题来源" class="headerlink" title="问题来源"></a>问题来源</h3><p>今天安装在virtualbox上安装了kali linux,安装好以后发现屏幕分辨率为1024<em>768,看起来特别小. 于是打开kali中显示器设置,发现只有1024</em>768和更低的分辨率可选.<br><img src="/images/pasted-2.png" alt="upload successful"></p>
-<h3 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h3><p>上网搜解决方案,通过<a href="https://docs.kali.org/general-use/kali-linux-virtual-box-guest" target="_blank" rel="external">官方文档</a>了解到需要安装增强工具.照做之后仍然无法调整屏幕分辨率.<br> 于是尝试使用官网上旧的方案安装,按照<a href="http://jingyan.baidu.com/article/73c3ce28e6b899e50343d92f.html" target="_blank" rel="external">百度经验</a><br>尝试安装.报错.被告知先要执行<br><code>apt-get install gcc make linux-headers-$(uname -r)</code><br>执行报错.报错为:<br><code>Unable to locate package &#39;linux-headers-4.9.0-kali3-amd64&#39;</code><br> 然后我在<br><a href="https://unix.stackexchange.com/questions/266871/cannot-find-linux-headers-4-3-0-kali-amd64" target="_blank" rel="external">某个外国论坛</a><br>按照教程更新了内核,重新尝试,仍然报错.<br>继续寻找解决方案.翻遍了互联网,仍然不行.<br>无奈之下考虑版本冲突.原来的virtualbox 版本为5.024 .更新到当前最新的5.1.22后重启虚拟机安装直接成功,重启后分辨率可调节:<br><img src="/images/pasted-4.png" alt="upload successful">  </p>
-<h3 id="感悟"><a href="#感悟" class="headerlink" title="感悟"></a>感悟</h3><p>官网文档一般不会出错,出错后考虑版本环境问题.<br>还是自己太菜了,此外kali的图标真的帅,甩出ubuntu,红帽,centos20条街.</p>
+      <content type="html"><![CDATA[<h3 id="u95EE_u9898_u6765_u6E90"><a href="#u95EE_u9898_u6765_u6E90" class="headerlink" title="问题来源"></a>问题来源</h3><p>今天安装在virtualbox上安装了kali linux,安装好以后发现屏幕分辨率为1024<em>768,看起来特别小. 于是打开kali中显示器设置,发现只有1024</em>768和更低的分辨率可选.<br><img src="/images/pasted-2.png" alt="upload successful"></p>
+<h3 id="u89E3_u51B3_u8FC7_u7A0B"><a href="#u89E3_u51B3_u8FC7_u7A0B" class="headerlink" title="解决过程"></a>解决过程</h3><p>上网搜解决方案,通过<a href="https://docs.kali.org/general-use/kali-linux-virtual-box-guest" target="_blank" rel="external">官方文档</a>了解到需要安装增强工具.照做之后仍然无法调整屏幕分辨率.<br> 于是尝试使用官网上旧的方案安装,按照<a href="http://jingyan.baidu.com/article/73c3ce28e6b899e50343d92f.html" target="_blank" rel="external">百度经验</a><br>尝试安装.报错.被告知先要执行<br><code>apt-get install gcc make linux-headers-$(uname -r)</code><br>执行报错.报错为:<br><code>Unable to locate package &#39;linux-headers-4.9.0-kali3-amd64&#39;</code><br> 然后我在<br><a href="https://unix.stackexchange.com/questions/266871/cannot-find-linux-headers-4-3-0-kali-amd64" target="_blank" rel="external">某个外国论坛</a><br>按照教程更新了内核,重新尝试,仍然报错.<br>继续寻找解决方案.翻遍了互联网,仍然不行.<br>无奈之下考虑版本冲突.原来的virtualbox 版本为5.024 .更新到当前最新的5.1.22后重启虚拟机安装直接成功,重启后分辨率可调节:<br><img src="/images/pasted-4.png" alt="upload successful">  </p>
+<h3 id="u611F_u609F"><a href="#u611F_u609F" class="headerlink" title="感悟"></a>感悟</h3><p>官网文档一般不会出错,出错后考虑版本环境问题.<br>还是自己太菜了,此外kali的图标真的帅,甩出ubuntu,红帽,centos20条街.</p>
 ]]></content>
       
         <categories>
@@ -187,9 +300,9 @@
     <entry>
       <title><![CDATA[翻译api哪家强]]></title>
       <url>/2017/06/14/%E7%BF%BB%E8%AF%91api%E5%93%AA%E5%AE%B6%E5%BC%BA/</url>
-      <content type="html"><![CDATA[<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a><span style="color:blue">问题</span></h3><p>今天遇到一个场景.需要将5500个单词从英文转为中文存到数据库中去,同时需要的存储的还有它们的音标.<br>由于数据量并不是很大,写一个循环调用5500次网上的翻译api就好了,但是在选择api上难到了我.  </p>
-<h3 id="信息"><a href="#信息" class="headerlink" title="信息"></a>信息</h3><p>首先需要说明的是所有的这些翻译网站都可以通过模拟请求来爬出翻译来,但是代码会难一些.所以还是找一些现成的比较方便.最终找到了几个api如下表:<br><img src="/images/pasted-1.png" alt="api对比图">  </p>
-<h3 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h3><p>有道17年5月的时候更新了一次,以前的api变了.之前的api每到1000次的时候就会被限制,新的使用起来又复杂了一些.百度的返回值没有看见音标.扇贝的不用申请key.但是请求500次之后ip被限制,结合使用场景最终选择了金山词霸.<br>写了个循环读取网站上json的小程序拿到了数据,插入了数据库当中.</p>
+      <content type="html"><![CDATA[<h3 id="u95EE_u9898"><a href="#u95EE_u9898" class="headerlink" title="问题"></a><span style="color:blue">问题</span></h3><p>今天遇到一个场景.需要将5500个单词从英文转为中文存到数据库中去,同时需要的存储的还有它们的音标.<br>由于数据量并不是很大,写一个循环调用5500次网上的翻译api就好了,但是在选择api上难到了我.  </p>
+<h3 id="u4FE1_u606F"><a href="#u4FE1_u606F" class="headerlink" title="信息"></a>信息</h3><p>首先需要说明的是所有的这些翻译网站都可以通过模拟请求来爬出翻译来,但是代码会难一些.所以还是找一些现成的比较方便.最终找到了几个api如下表:<br><img src="/images/pasted-1.png" alt="api对比图">  </p>
+<h3 id="u65B9_u6848"><a href="#u65B9_u6848" class="headerlink" title="方案"></a>方案</h3><p>有道17年5月的时候更新了一次,以前的api变了.之前的api每到1000次的时候就会被限制,新的使用起来又复杂了一些.百度的返回值没有看见音标.扇贝的不用申请key.但是请求500次之后ip被限制,结合使用场景最终选择了金山词霸.<br>写了个循环读取网站上json的小程序拿到了数据,插入了数据库当中.</p>
 ]]></content>
       
         
@@ -226,12 +339,12 @@
     <entry>
       <title><![CDATA[新的一天]]></title>
       <url>/2017/06/11/%E6%96%B0%E7%9A%84%E4%B8%80%E5%A4%A9/</url>
-      <content type="html"><![CDATA[<h3 id="又一次开始"><a href="#又一次开始" class="headerlink" title="又一次开始"></a>又一次开始</h3><p>花了几个小时又搭了一个博客,之前也写过一些,但是一直都没有坚持下来.<br>这次选的hexo 用的material主题,因为它看起来很干净.<br>markdown的语法几乎记不起来了.其实只要记得,引用,代码块,图片,列表就够了吧.挨个试一下.  </p>
-<h4 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h4><blockquote><p><item><br>一个字符串，可包括样式设置标记。其值可以是对另一字符串资源的引用。 必须是 <string-array> 元素的子项。请注意，您必须将撇号和引号转义。 如需了解有关如何正确设置字符串样式和格式的信息，请参阅下文的格式和样式设置。<br>无属性。</string-array></item></p>
+      <content type="html"><![CDATA[<h3 id="u53C8_u4E00_u6B21_u5F00_u59CB"><a href="#u53C8_u4E00_u6B21_u5F00_u59CB" class="headerlink" title="又一次开始"></a>又一次开始</h3><p>花了几个小时又搭了一个博客,之前也写过一些,但是一直都没有坚持下来.<br>这次选的hexo 用的material主题,因为它看起来很干净.<br>markdown的语法几乎记不起来了.其实只要记得,引用,代码块,图片,列表就够了吧.挨个试一下.  </p>
+<h4 id="u5F15_u7528"><a href="#u5F15_u7528" class="headerlink" title="引用"></a>引用</h4><blockquote><p><item><br>一个字符串，可包括样式设置标记。其值可以是对另一字符串资源的引用。 必须是 <string-array> 元素的子项。请注意，您必须将撇号和引号转义。 如需了解有关如何正确设置字符串样式和格式的信息，请参阅下文的格式和样式设置。<br>无属性。</string-array></item></p>
 <footer><strong>android</strong><cite><a href="https://developer.android.com/guide/topics/resources/string-resource.html" target="_blank" rel="external">链接</a></cite></footer></blockquote>  
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args [])</span> </span>&#123;</div><div class="line">	System.out.println(<span class="string">" "</span>);</div><div class="line">&#125;  </div><div class="line">暂时这样有空调出来代码高亮。</div></pre></td></tr></table></figure>  
-<h4 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h4><img src="/image/head.jpg" width="300" height="300">
-<h4 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h4><ul>
+<h4 id="u4EE3_u7801"><a href="#u4EE3_u7801" class="headerlink" title="代码"></a>代码</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args [])</span> </span>&#123;</div><div class="line">	System.out.println(<span class="string">" "</span>);</div><div class="line">&#125;  </div><div class="line">暂时这样有空调出来代码高亮。</div></pre></td></tr></table></figure>  
+<h4 id="u56FE_u7247"><a href="#u56FE_u7247" class="headerlink" title="图片"></a>图片</h4><img src="/image/head.jpg" width="300" height="300">
+<h4 id="u5217_u8868"><a href="#u5217_u8868" class="headerlink" title="列表"></a>列表</h4><ul>
 <li>value1</li>
 <li>value2 </li>
 </ul>
@@ -258,7 +371,7 @@
     <entry>
       <title><![CDATA[课程:泛型]]></title>
       <url>/2016/11/11/%E8%AF%BE%E7%A8%8B%EF%BC%9A%E6%B3%9B%E5%9E%8B/</url>
-      <content type="html"><![CDATA[<h3 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h3><p>在任何的软件中，bug都是很常见的。小心的计划，编写然后测试可能减少bug的出现频率。但是从某种程度上来说，bug总会在你的代码中出现。而当你的代码体积增大，项目复杂之后bug变得尤为常见。<br>幸运的是，一些种类的bug可以较为简单的被检查出来。比如说编译时的bug，你可以使用编译器提供的错误信息来找出问题所在然后修复它。<br>然而运行时出现的bug会是一个较为复杂的问题。它们不那么容易被发现。而且当它们出现的时候，错误可能指向一个并不是问题所在的位置。<br>泛型可以使你的某些bug可以在编译时就被发现，这增加了你代码的稳定性。当你完成了本课程，你可能想学习<a href="https://docs.oracle.com/javase/tutorial/extra/generics/index.html" target="_blank" rel="external">Gilad Bracha 关于泛型的课程</a>  </p>
+      <content type="html"><![CDATA[<h3 id="u6CDB_u578B"><a href="#u6CDB_u578B" class="headerlink" title="泛型"></a>泛型</h3><p>在任何的软件中，bug都是很常见的。小心的计划，编写然后测试可能减少bug的出现频率。但是从某种程度上来说，bug总会在你的代码中出现。而当你的代码体积增大，项目复杂之后bug变得尤为常见。<br>幸运的是，一些种类的bug可以较为简单的被检查出来。比如说编译时的bug，你可以使用编译器提供的错误信息来找出问题所在然后修复它。<br>然而运行时出现的bug会是一个较为复杂的问题。它们不那么容易被发现。而且当它们出现的时候，错误可能指向一个并不是问题所在的位置。<br>泛型可以使你的某些bug可以在编译时就被发现，这增加了你代码的稳定性。当你完成了本课程，你可能想学习<a href="https://docs.oracle.com/javase/tutorial/extra/generics/index.html" target="_blank" rel="external">Gilad Bracha 关于泛型的课程</a>  </p>
 <p>译者注:翻译自<a href="https://docs.oracle.com/javase/tutorial/java/generics/index.html" target="_blank" rel="external">java泛型官方文档</a>,欢迎斧正.<br><a href="../为什么用泛型">下一页</a></p>
 ]]></content>
       
@@ -346,6 +459,76 @@
     </entry>
     
     <entry>
+      <title><![CDATA[原生类型]]></title>
+      <url>/2016/11/11/%E5%8E%9F%E7%94%9F%E7%B1%BB%E5%9E%8B/</url>
+      <content type="html"><![CDATA[<p>#原生类型<br>原生类型是指那些不带类型参数的泛型类或接口。举例来说，对于泛型类Box:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">public class Box&lt;T&gt; &#123;</div><div class="line">    public void set(T t) &#123; /* ... */ &#125;</div><div class="line">    // ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>为了创建参数化的Box<t>类，我们需要提供一个类型参数给T,:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Box&lt;Integer&gt; intBox=new Box&lt;&gt;();</div></pre></td></tr></table></figure></t></p>
+<p>如果实际的类型参数被隐藏起来，你可以创建一个原生类型的Box<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Box rawBox = new Box();</div></pre></td></tr></table></figure></p>
+<p>因此Box是<code>Box&lt;T&gt;</code>的原生版，然而一个非泛型类或接口不是原生类型。</p>
+<p>原生类型一般在遗留代码中出现，因为很多API的类（比如说Collections）在JDK5.0之前不是泛型。我们大体上可以使用之前的特性。比如使用一个Object给Box赋值。为了代码兼容性，将泛型版本的对象赋值给原生版本是可以的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Box&lt;String&gt; stringBox = new Box&lt;&gt;();</div><div class="line">Box rawBox = stringBox;               // OK</div></pre></td></tr></table></figure></p>
+<p>但是如果反过来就会有警告出现<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Box rawBox = new Box();           // rawBox is a raw type of Box&lt;T&gt;</div><div class="line">Box&lt;Integer&gt; intBox = rawBox;     // warning: unchecked conversion</div></pre></td></tr></table></figure></p>
+<p>如果原生类型调用泛型方法一样会产生警告<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Box&lt;String&gt; stringBox = new Box&lt;&gt;();</div><div class="line">Box rawBox = stringBox;</div><div class="line">rawBox.set(8);  // warning: unchecked invocation to set(T)</div></pre></td></tr></table></figure></p>
+<p>这个警告的出现是因为原生类型没有经过类型的检查，将不安全代码的检查推迟到了软件运行时。因此，我们应该避免使用原生类型。</p>
+<p>类型删除部分有更多关于java编译器如何使用原生类型的信息。</p>
+<p>###’未检查错误’信息<br>正如之前所说的那样，当遗留代码和泛型代码混用的时候，你也许会遇到下面这样的警告信息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Note: Example.java uses unchecked or unsafe operations.</div><div class="line">Note: Recompile with -Xlint:unchecked for details.</div></pre></td></tr></table></figure></p>
+<p>当旧的API操作原生类型的时，可能会出现这种情况：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">public class WarningDemo &#123;</div><div class="line">    public static void main(String[] args)&#123;</div><div class="line">        Box&lt;Integer&gt; bi;</div><div class="line">        bi = createBox();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    static Box createBox()&#123;</div><div class="line">        return new Box();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>“unchecked”表示编译器没有足够的信息进行类型检查来保证类型的安全。默认情况下这个警告是被禁用的。如果你想看到这个警告，请在编译时加上 -Xlint:unchecked选项。<br>加上这个选项后重新编译我们的得到如下的编译信息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">WarningDemo.java:4: warning: [unchecked] unchecked conversion</div><div class="line">found   : Box</div><div class="line">required: Box&lt;java.lang.Integer&gt;</div><div class="line">        bi = createBox();</div><div class="line">                      ^</div><div class="line">1 warning</div></pre></td></tr></table></figure></p>
+<p>为了彻底禁用未检查警告，使用’-Xlint:-unchecked’选项。注解<code> @SuppressWarnings(“unchecked”)</code>抑制了未检查警告。<br><a href="../泛型方法">下一页</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> java </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 翻译 </tag>
+            
+            <tag> 语法 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[泛型,继承和子类型]]></title>
+      <url>/2016/11/11/%E6%B3%9B%E5%9E%8B,%E7%BB%A7%E6%89%BF%E5%92%8C%E5%AD%90%E7%B1%BB%E5%9E%8B/</url>
+      <content type="html"><![CDATA[<p>正如你所知，如果一个类型适配另一个类型，那么我们可以用这个类型的对象给另一个类型的对象赋值，举例来说，因为Object是Integer的父类我们可以给一个Object对象一个Integer的值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Object someObject = new Object();</div><div class="line">Integer someInteger = new Integer(10);</div><div class="line">someObject = someInteger;   // OK</div></pre></td></tr></table></figure></p>
+<p>在面向对象的术语中，这叫做“是一个”的关系。既然Integer是一个Obejct，这个赋值就是被允许的。而且既然Integer是一个Number,所以以下代码也是正确的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">public void someMethod(Number n) &#123; /* ... */ &#125;</div><div class="line"></div><div class="line">someMethod(new Integer(10));   // OK</div><div class="line">someMethod(new Double(10.1));   // OK</div></pre></td></tr></table></figure></p>
+<p>这一点在泛型上也适用，声明一个泛型调用，以Number作为它的类型参数。这样如果使用适配Number的类型都可以作为类型参数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Box&lt;Number&gt; box = new Box&lt;Number&gt;();</div><div class="line">box.add(new Integer(10));   // OK</div><div class="line">box.add(new Double(10.1));  // OK</div></pre></td></tr></table></figure></p>
+<p>现在我们考虑如下方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">public void boxTest(Box&lt;Number&gt; n) &#123; /* ... */ &#125;</div></pre></td></tr></table></figure></p>
+<p>它可以接收什么样的参数？通过方法声明，我们可以看出它只接受一个Box<number>类型的参数，但是这意味着什么？是否和你期望的一样它可以接受Box<integer>或是Box<double>?答案是不行，因为Box<integer>不是Box<number>的子类型。<br>这在泛型编程中可能有些难理解，但是这是泛型编程的一个重点<br><img src="https://docs.oracle.com/javase/tutorial/figures/java/generics-subtypeRelationship.gif" alt=""><br>虽然Integer是Number的子类，但是<code>Box&lt;Integer&gt;</code>并不是<code>Box&lt;Number&gt;</code>的子类。</number></integer></double></integer></number></p>
+<p>需要注意：假设有A,B两个类,不管A,B是什么关系，<code>MyClass&lt;A&gt;</code>和<code>MyClass&lt;B&gt;</code>都没有任何关系，<code>MyClass&lt;A&gt;</code>,<code>MyClass&lt;B&gt;</code>的共同父类是Object。<br>如果你想了解如何创建泛型间的父子关系，请参考<a href="https://docs.oracle.com/javase/tutorial/java/generics/subtyping.html" target="_blank" rel="external">通配符和子类型</a>。</p>
+<p>###泛型类和子类型<br>我们可以通过继承或实现一个泛型类来创建它的子类型，两者的关系依赖于你是继承还是实现它。<br>以Collections类为例，<code>ArrayList&lt;E&gt;</code>实现了<code>List&lt;E&gt;</code>,<code>List&lt;E&gt;</code>继承了<code>Collection&lt;E&gt;</code>,所以说<code>ArrayList&lt;String&gt;</code>是<code>List&lt;String&gt;</code>的子类型。既然我们没有变类型参数。所以他们之间的关系如下图所示：<br><img src="https://docs.oracle.com/javase/tutorial/figures/java/generics-sampleHierarchy.gif" alt=""><br>假设我们现在想定义哦我们呢自己的list接口PayLoadList,它有一个可变的类型参数P,它的声明可能像这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">interface PayloadList&lt;E,P&gt; extends List&lt;E&gt; &#123;</div><div class="line">  void setPayload(int index, P val);</div><div class="line">  ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>以下的类都是<code>List&lt;String&gt;</code>类的子类。</p>
+<ul>
+<li><code>PayloadList&lt;String,String&gt;</code></li>
+<li><code>PayloadList&lt;String,Integer&gt;</code></li>
+<li><code>PayloadList&lt;String,Exception&gt;</code><br><img src="https://docs.oracle.com/javase/tutorial/figures/java/generics-payloadListHierarchy.gif" alt=""><br><a href="../类型推理">下一页</a></li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> java </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 翻译 </tag>
+            
+            <tag> 语法 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[泛型方法]]></title>
       <url>/2016/11/11/%E6%B3%9B%E5%9E%8B%E6%96%B9%E6%B3%95/</url>
       <content type="html"><![CDATA[<p>#泛型方法<br>泛型方法是声明了它自己的类型参数的方法，这和声明泛型类型有些相似。但是类型参数仅仅被限制在这个声明的方法中。静态或是非静态的都可以，泛型类的构造函数也是这样。<br>泛型方法包括一个在尖括号内，位置是返回类型之前的类型参数。对于静态泛型方法，类型参数必须是在方法返回类型之前。<br>Util类包含一个比较两个Pair对象的泛型方法compare，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">public class Util &#123;</div><div class="line">    public static &lt;K, V&gt; boolean compare(Pair&lt;K, V&gt; p1, Pair&lt;K, V&gt; p2) &#123;</div><div class="line">        return p1.getKey().equals(p2.getKey()) &amp;&amp;</div><div class="line">               p1.getValue().equals(p2.getValue());</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class Pair&lt;K, V&gt; &#123;</div><div class="line"></div><div class="line">    private K key;</div><div class="line">    private V value;</div><div class="line"></div><div class="line">    public Pair(K key, V value) &#123;</div><div class="line">        this.key = key;</div><div class="line">        this.value = value;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setKey(K key) &#123; this.key = key; &#125;</div><div class="line">    public void setValue(V value) &#123; this.value = value; &#125;</div><div class="line">    public K getKey()   &#123; return key; &#125;</div><div class="line">    public V getValue() &#123; return value; &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
@@ -372,17 +555,12 @@
     </entry>
     
     <entry>
-      <title><![CDATA[受限的类型参数]]></title>
-      <url>/2016/11/11/%E5%8F%97%E9%99%90%E7%9A%84%E7%B1%BB%E5%9E%8B%E5%8F%82%E6%95%B0/</url>
-      <content type="html"><![CDATA[<p>#受限的类型参数<br>有时我们可能想要限制类型参数的可选类型。比如说一个操作Number类的方法可能只想接受Number类型以及他的子类，这就是我们为什么要使用受限类型参数。</p>
-<p>为了声明一个受限类型参数，列出类型参数的名字，后边是<strong>extends</strong>关键字，再然后是他的上界，在这个例子中是Number。需要注意的是在这个情境中，Extends既表示继承(对类来说)也表示实现（对接口来说）。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">public class Box&lt;T&gt; &#123;</div><div class="line"></div><div class="line">    private T t;          </div><div class="line"></div><div class="line">    public void set(T t) &#123;</div><div class="line">        this.t = t;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public T get() &#123;</div><div class="line">        return t;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public &lt;U extends Number&gt; void inspect(U u)&#123;</div><div class="line">        System.out.println(&quot;T: &quot; + t.getClass().getName());</div><div class="line">        System.out.println(&quot;U: &quot; + u.getClass().getName());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        Box&lt;Integer&gt; integerBox = new Box&lt;Integer&gt;();</div><div class="line">        integerBox.set(new Integer(10));</div><div class="line">        integerBox.inspect(&quot;some text&quot;); // error: this is still String!</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>如果我们的inspect方法使用了受限的类型参数，比较就会失败，因为我们调用inspect方法时使用了String。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Box.java:21: &lt;U&gt;inspect(U) in Box&lt;java.lang.Integer&gt; cannot</div><div class="line">  be applied to (java.lang.String)</div><div class="line">                        integerBox.inspect(&quot;10&quot;);</div><div class="line">                                  ^</div><div class="line">1 error</div></pre></td></tr></table></figure></p>
-<p>除了以上的功能，受限类型参数允许你调用提供限制类的方法。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">public class NaturalNumber&lt;T extends Integer&gt; &#123;</div><div class="line"></div><div class="line">    private T n;</div><div class="line"></div><div class="line">    public NaturalNumber(T n)  &#123; this.n = n; &#125;</div><div class="line"></div><div class="line">    public boolean isEven() &#123;</div><div class="line">        return n.intValue() % 2 == 0;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    // ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>isEven方法调用了Integer类的intValue方法。</p>
-<p>###多个受限参数<br>上面的例子阐述了类型参数的单个限制，但是一个类型参数可以有多个限制条件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;T extends B1 &amp; B2 &amp; B3&gt;</div></pre></td></tr></table></figure></p>
-<p>一个有多个限定的类型参数的声明如上所示。这个参数必须继承或实现所有的限制类或接口。需要注意的是限制类必须第一个声明。举例来说：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Class A &#123; /* ... */ &#125;</div><div class="line">interface B &#123; /* ... */ &#125;</div><div class="line">interface C &#123; /* ... */ &#125;</div><div class="line"></div><div class="line">class D &lt;T extends A &amp; B &amp; C&gt; &#123; /* ... */ &#125;</div></pre></td></tr></table></figure></p>
-<p>如果不这样做，我们就会得到编译错误。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">class D &lt;T extends B &amp; A &amp; C&gt; &#123; /* ... */ &#125;  // compile-time error</div></pre></td></tr></table></figure></p>
-<p><a href="../泛型方法和受限类型参数">下一页</a></p>
+      <title><![CDATA[泛型方法和受限类型参数]]></title>
+      <url>/2016/11/11/%E6%B3%9B%E5%9E%8B%E6%96%B9%E6%B3%95%E5%92%8C%E5%8F%97%E9%99%90%E7%B1%BB%E5%9E%8B%E5%8F%82%E6%95%B0/</url>
+      <content type="html"><![CDATA[<p>#泛型方法和受限类型参数<br>受限类型参数是实现泛型方法的关键所在。下面的方法是统计T数组中超过elem的元素个数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">public static &lt;T&gt; int countGreaterThan(T[] anArray, T elem) &#123;</div><div class="line">    int count = 0;</div><div class="line">    for (T e : anArray)</div><div class="line">        if (e &gt; elem)  // compiler error</div><div class="line">            ++count;</div><div class="line">    return count;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这个方法的实现是很简单的，但是我们会得到一个编译错误，因为&gt;符号只能用在基本类型上。为了修正这个错误，使用一个受限于Comparable<t>接口的类型参数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">public interface Comparable&lt;T&gt; &#123;</div><div class="line">    public int compareTo(T o);</div><div class="line">&#125;</div></pre></td></tr></table></figure></t></p>
+<p>最终的代码会如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">public static &lt;T extends Comparable&lt;T&gt;&gt; int countGreaterThan(T[] anArray, T elem) &#123;</div><div class="line">    int count = 0;</div><div class="line">    for (T e : anArray)</div><div class="line">        if (e.compareTo(elem) &gt; 0)</div><div class="line">            ++count;</div><div class="line">    return count;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><a href="../泛型,继承和子类型">下一页</a></p>
 ]]></content>
       
         <categories>
@@ -498,32 +676,6 @@
     </entry>
     
     <entry>
-      <title><![CDATA[泛型方法和受限类型参数]]></title>
-      <url>/2016/11/11/%E6%B3%9B%E5%9E%8B%E6%96%B9%E6%B3%95%E5%92%8C%E5%8F%97%E9%99%90%E7%B1%BB%E5%9E%8B%E5%8F%82%E6%95%B0/</url>
-      <content type="html"><![CDATA[<p>#泛型方法和受限类型参数<br>受限类型参数是实现泛型方法的关键所在。下面的方法是统计T数组中超过elem的元素个数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">public static &lt;T&gt; int countGreaterThan(T[] anArray, T elem) &#123;</div><div class="line">    int count = 0;</div><div class="line">    for (T e : anArray)</div><div class="line">        if (e &gt; elem)  // compiler error</div><div class="line">            ++count;</div><div class="line">    return count;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>这个方法的实现是很简单的，但是我们会得到一个编译错误，因为&gt;符号只能用在基本类型上。为了修正这个错误，使用一个受限于Comparable<t>接口的类型参数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">public interface Comparable&lt;T&gt; &#123;</div><div class="line">    public int compareTo(T o);</div><div class="line">&#125;</div></pre></td></tr></table></figure></t></p>
-<p>最终的代码会如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">public static &lt;T extends Comparable&lt;T&gt;&gt; int countGreaterThan(T[] anArray, T elem) &#123;</div><div class="line">    int count = 0;</div><div class="line">    for (T e : anArray)</div><div class="line">        if (e.compareTo(elem) &gt; 0)</div><div class="line">            ++count;</div><div class="line">    return count;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p><a href="../泛型,继承和子类型">下一页</a></p>
-]]></content>
-      
-        <categories>
-            
-            <category> java </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> 翻译 </tag>
-            
-            <tag> 语法 </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[上界通配符]]></title>
       <url>/2016/11/11/%E4%B8%8A%E7%95%8C%E9%80%9A%E9%85%8D%E7%AC%A6/</url>
       <content type="html"><![CDATA[<p>###上界通配符<br>我们可以使用上界通配符来放松对变量的限制。举例来说，如果你想写一个适用在<code>List&lt;Integer&gt;, List&lt;Double&gt;, 和 List&lt;Number&gt;</code>上的方法，你可以通过上界通配符来实现。<br>为了声明一个上界通配符，使用通配符‘？’，然后是<strong>extends</strong>关键字。再然后是上界。注意在此extends既指继承也指实现。<br><code>List&lt;? extends Number&gt;</code>可以适用于<code>List&lt;Integer&gt;, List&lt;Double&gt;</code>,<code>但是List&lt;Number&gt;</code>只适用于<code>但是List&lt;Number&gt;</code>。<br>考虑process方法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">public static void process(List&lt;? extends Foo&gt; list) &#123; /* ... */ &#125;</div></pre></td></tr></table></figure></p>
@@ -575,56 +727,17 @@
     </entry>
     
     <entry>
-      <title><![CDATA[原生类型]]></title>
-      <url>/2016/11/11/%E5%8E%9F%E7%94%9F%E7%B1%BB%E5%9E%8B/</url>
-      <content type="html"><![CDATA[<p>#原生类型<br>原生类型是指那些不带类型参数的泛型类或接口。举例来说，对于泛型类Box:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">public class Box&lt;T&gt; &#123;</div><div class="line">    public void set(T t) &#123; /* ... */ &#125;</div><div class="line">    // ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>为了创建参数化的Box<t>类，我们需要提供一个类型参数给T,:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Box&lt;Integer&gt; intBox=new Box&lt;&gt;();</div></pre></td></tr></table></figure></t></p>
-<p>如果实际的类型参数被隐藏起来，你可以创建一个原生类型的Box<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Box rawBox = new Box();</div></pre></td></tr></table></figure></p>
-<p>因此Box是<code>Box&lt;T&gt;</code>的原生版，然而一个非泛型类或接口不是原生类型。</p>
-<p>原生类型一般在遗留代码中出现，因为很多API的类（比如说Collections）在JDK5.0之前不是泛型。我们大体上可以使用之前的特性。比如使用一个Object给Box赋值。为了代码兼容性，将泛型版本的对象赋值给原生版本是可以的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Box&lt;String&gt; stringBox = new Box&lt;&gt;();</div><div class="line">Box rawBox = stringBox;               // OK</div></pre></td></tr></table></figure></p>
-<p>但是如果反过来就会有警告出现<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Box rawBox = new Box();           // rawBox is a raw type of Box&lt;T&gt;</div><div class="line">Box&lt;Integer&gt; intBox = rawBox;     // warning: unchecked conversion</div></pre></td></tr></table></figure></p>
-<p>如果原生类型调用泛型方法一样会产生警告<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Box&lt;String&gt; stringBox = new Box&lt;&gt;();</div><div class="line">Box rawBox = stringBox;</div><div class="line">rawBox.set(8);  // warning: unchecked invocation to set(T)</div></pre></td></tr></table></figure></p>
-<p>这个警告的出现是因为原生类型没有经过类型的检查，将不安全代码的检查推迟到了软件运行时。因此，我们应该避免使用原生类型。</p>
-<p>类型删除部分有更多关于java编译器如何使用原生类型的信息。</p>
-<p>###’未检查错误’信息<br>正如之前所说的那样，当遗留代码和泛型代码混用的时候，你也许会遇到下面这样的警告信息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Note: Example.java uses unchecked or unsafe operations.</div><div class="line">Note: Recompile with -Xlint:unchecked for details.</div></pre></td></tr></table></figure></p>
-<p>当旧的API操作原生类型的时，可能会出现这种情况：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">public class WarningDemo &#123;</div><div class="line">    public static void main(String[] args)&#123;</div><div class="line">        Box&lt;Integer&gt; bi;</div><div class="line">        bi = createBox();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    static Box createBox()&#123;</div><div class="line">        return new Box();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>“unchecked”表示编译器没有足够的信息进行类型检查来保证类型的安全。默认情况下这个警告是被禁用的。如果你想看到这个警告，请在编译时加上 -Xlint:unchecked选项。<br>加上这个选项后重新编译我们的得到如下的编译信息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">WarningDemo.java:4: warning: [unchecked] unchecked conversion</div><div class="line">found   : Box</div><div class="line">required: Box&lt;java.lang.Integer&gt;</div><div class="line">        bi = createBox();</div><div class="line">                      ^</div><div class="line">1 warning</div></pre></td></tr></table></figure></p>
-<p>为了彻底禁用未检查警告，使用’-Xlint:-unchecked’选项。注解<code> @SuppressWarnings(“unchecked”)</code>抑制了未检查警告。<br><a href="../泛型方法">下一页</a></p>
-]]></content>
-      
-        <categories>
-            
-            <category> java </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> 翻译 </tag>
-            
-            <tag> 语法 </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[泛型,继承和子类型]]></title>
-      <url>/2016/11/11/%E6%B3%9B%E5%9E%8B,%E7%BB%A7%E6%89%BF%E5%92%8C%E5%AD%90%E7%B1%BB%E5%9E%8B/</url>
-      <content type="html"><![CDATA[<p>正如你所知，如果一个类型适配另一个类型，那么我们可以用这个类型的对象给另一个类型的对象赋值，举例来说，因为Object是Integer的父类我们可以给一个Object对象一个Integer的值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Object someObject = new Object();</div><div class="line">Integer someInteger = new Integer(10);</div><div class="line">someObject = someInteger;   // OK</div></pre></td></tr></table></figure></p>
-<p>在面向对象的术语中，这叫做“是一个”的关系。既然Integer是一个Obejct，这个赋值就是被允许的。而且既然Integer是一个Number,所以以下代码也是正确的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">public void someMethod(Number n) &#123; /* ... */ &#125;</div><div class="line"></div><div class="line">someMethod(new Integer(10));   // OK</div><div class="line">someMethod(new Double(10.1));   // OK</div></pre></td></tr></table></figure></p>
-<p>这一点在泛型上也适用，声明一个泛型调用，以Number作为它的类型参数。这样如果使用适配Number的类型都可以作为类型参数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Box&lt;Number&gt; box = new Box&lt;Number&gt;();</div><div class="line">box.add(new Integer(10));   // OK</div><div class="line">box.add(new Double(10.1));  // OK</div></pre></td></tr></table></figure></p>
-<p>现在我们考虑如下方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">public void boxTest(Box&lt;Number&gt; n) &#123; /* ... */ &#125;</div></pre></td></tr></table></figure></p>
-<p>它可以接收什么样的参数？通过方法声明，我们可以看出它只接受一个Box<number>类型的参数，但是这意味着什么？是否和你期望的一样它可以接受Box<integer>或是Box<double>?答案是不行，因为Box<integer>不是Box<number>的子类型。<br>这在泛型编程中可能有些难理解，但是这是泛型编程的一个重点<br><img src="https://docs.oracle.com/javase/tutorial/figures/java/generics-subtypeRelationship.gif" alt=""><br>虽然Integer是Number的子类，但是<code>Box&lt;Integer&gt;</code>并不是<code>Box&lt;Number&gt;</code>的子类。</number></integer></double></integer></number></p>
-<p>需要注意：假设有A,B两个类,不管A,B是什么关系，<code>MyClass&lt;A&gt;</code>和<code>MyClass&lt;B&gt;</code>都没有任何关系，<code>MyClass&lt;A&gt;</code>,<code>MyClass&lt;B&gt;</code>的共同父类是Object。<br>如果你想了解如何创建泛型间的父子关系，请参考<a href="https://docs.oracle.com/javase/tutorial/java/generics/subtyping.html" target="_blank" rel="external">通配符和子类型</a>。</p>
-<p>###泛型类和子类型<br>我们可以通过继承或实现一个泛型类来创建它的子类型，两者的关系依赖于你是继承还是实现它。<br>以Collections类为例，<code>ArrayList&lt;E&gt;</code>实现了<code>List&lt;E&gt;</code>,<code>List&lt;E&gt;</code>继承了<code>Collection&lt;E&gt;</code>,所以说<code>ArrayList&lt;String&gt;</code>是<code>List&lt;String&gt;</code>的子类型。既然我们没有变类型参数。所以他们之间的关系如下图所示：<br><img src="https://docs.oracle.com/javase/tutorial/figures/java/generics-sampleHierarchy.gif" alt=""><br>假设我们现在想定义哦我们呢自己的list接口PayLoadList,它有一个可变的类型参数P,它的声明可能像这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">interface PayloadList&lt;E,P&gt; extends List&lt;E&gt; &#123;</div><div class="line">  void setPayload(int index, P val);</div><div class="line">  ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>以下的类都是<code>List&lt;String&gt;</code>类的子类。</p>
-<ul>
-<li><code>PayloadList&lt;String,String&gt;</code></li>
-<li><code>PayloadList&lt;String,Integer&gt;</code></li>
-<li><code>PayloadList&lt;String,Exception&gt;</code><br><img src="https://docs.oracle.com/javase/tutorial/figures/java/generics-payloadListHierarchy.gif" alt=""><br><a href="../类型推理">下一页</a></li>
-</ul>
+      <title><![CDATA[受限的类型参数]]></title>
+      <url>/2016/11/11/%E5%8F%97%E9%99%90%E7%9A%84%E7%B1%BB%E5%9E%8B%E5%8F%82%E6%95%B0/</url>
+      <content type="html"><![CDATA[<p>#受限的类型参数<br>有时我们可能想要限制类型参数的可选类型。比如说一个操作Number类的方法可能只想接受Number类型以及他的子类，这就是我们为什么要使用受限类型参数。</p>
+<p>为了声明一个受限类型参数，列出类型参数的名字，后边是<strong>extends</strong>关键字，再然后是他的上界，在这个例子中是Number。需要注意的是在这个情境中，Extends既表示继承(对类来说)也表示实现（对接口来说）。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">public class Box&lt;T&gt; &#123;</div><div class="line"></div><div class="line">    private T t;          </div><div class="line"></div><div class="line">    public void set(T t) &#123;</div><div class="line">        this.t = t;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public T get() &#123;</div><div class="line">        return t;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public &lt;U extends Number&gt; void inspect(U u)&#123;</div><div class="line">        System.out.println(&quot;T: &quot; + t.getClass().getName());</div><div class="line">        System.out.println(&quot;U: &quot; + u.getClass().getName());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        Box&lt;Integer&gt; integerBox = new Box&lt;Integer&gt;();</div><div class="line">        integerBox.set(new Integer(10));</div><div class="line">        integerBox.inspect(&quot;some text&quot;); // error: this is still String!</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>如果我们的inspect方法使用了受限的类型参数，比较就会失败，因为我们调用inspect方法时使用了String。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Box.java:21: &lt;U&gt;inspect(U) in Box&lt;java.lang.Integer&gt; cannot</div><div class="line">  be applied to (java.lang.String)</div><div class="line">                        integerBox.inspect(&quot;10&quot;);</div><div class="line">                                  ^</div><div class="line">1 error</div></pre></td></tr></table></figure></p>
+<p>除了以上的功能，受限类型参数允许你调用提供限制类的方法。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">public class NaturalNumber&lt;T extends Integer&gt; &#123;</div><div class="line"></div><div class="line">    private T n;</div><div class="line"></div><div class="line">    public NaturalNumber(T n)  &#123; this.n = n; &#125;</div><div class="line"></div><div class="line">    public boolean isEven() &#123;</div><div class="line">        return n.intValue() % 2 == 0;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    // ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>isEven方法调用了Integer类的intValue方法。</p>
+<p>###多个受限参数<br>上面的例子阐述了类型参数的单个限制，但是一个类型参数可以有多个限制条件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;T extends B1 &amp; B2 &amp; B3&gt;</div></pre></td></tr></table></figure></p>
+<p>一个有多个限定的类型参数的声明如上所示。这个参数必须继承或实现所有的限制类或接口。需要注意的是限制类必须第一个声明。举例来说：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Class A &#123; /* ... */ &#125;</div><div class="line">interface B &#123; /* ... */ &#125;</div><div class="line">interface C &#123; /* ... */ &#125;</div><div class="line"></div><div class="line">class D &lt;T extends A &amp; B &amp; C&gt; &#123; /* ... */ &#125;</div></pre></td></tr></table></figure></p>
+<p>如果不这样做，我们就会得到编译错误。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">class D &lt;T extends B &amp; A &amp; C&gt; &#123; /* ... */ &#125;  // compile-time error</div></pre></td></tr></table></figure></p>
+<p><a href="../泛型方法和受限类型参数">下一页</a></p>
 ]]></content>
       
         <categories>
@@ -646,18 +759,18 @@
     
   
   
-    
-    <entry>
-      <title><![CDATA[tags]]></title>
-      <url>/tags/index.html</url>
-      <content type="html"></content>
-    </entry>
     
     <entry>
       <title><![CDATA[关于]]></title>
       <url>/%E5%85%B3%E4%BA%8E/index.html</url>
       <content type="html"><![CDATA[<p>贾康的个人博客.<br>可以从上边找到一些java,安卓,信息安全,算法的分享<br>评论插件被墙,暂未找到好的替代方案.<br>之所以选用hexo,是如果用动态的,就得用自己的服务器,就得备案.</p>
 ]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[tags]]></title>
+      <url>/tags/index.html</url>
+      <content type="html"></content>
     </entry>
     
   
