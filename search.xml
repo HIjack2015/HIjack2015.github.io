@@ -3,6 +3,63 @@
   
     
     <entry>
+      <title><![CDATA[完美世界面试经过]]></title>
+      <url>/2018/02/27/%E5%AE%8C%E7%BE%8E%E4%B8%96%E7%95%8C%E9%9D%A2%E8%AF%95%E7%BB%8F%E8%BF%87/</url>
+      <content type="html"><![CDATA[<h3 id="经过"><a href="#经过" class="headerlink" title="经过"></a>经过</h3><p>30分钟笔试.三道程序设计题.</p>
+<ol>
+<li>rand5 生成 rand7</li>
+<li>检测链表是否存在环及环的位置.</li>
+<li>排序选一种写出来.</li>
+</ol>
+<p>题不算难,但我愣是连快排都忘了怎么写,炸裂.估计面试官也挺无奈的.但是他还是认真的提示我.我还是没想到该怎么办…于是更加尴尬了. </p>
+<p>然后开始面试,开始问我 动画,一直围绕ui问,其实这方面我是最不了解,也最不感兴趣的.然后双方都很无奈.估计他也在想:”这样一个彩笔是怎样经过简历筛选的”.于是他说:”那就这样吧”,我说:”抱歉浪费您时间了.”</p>
+<p>就酱.</p>
+]]></content>
+      
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[搜狐视频面试经过]]></title>
+      <url>/2018/02/27/%E9%9D%A2%E8%AF%95%E8%AE%B0%E5%BD%95/</url>
+      <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>又一次开始开始北漂,这里我们记录下所有我觉得有价值的面试题,怎么来说也是一笔财富.</p>
+<h3 id="面试岗位-android开发"><a href="#面试岗位-android开发" class="headerlink" title="面试岗位:android开发."></a>面试岗位:android开发.</h3><h3 id="经过"><a href="#经过" class="headerlink" title="经过:"></a>经过:</h3><p>十点半开始,先做一个小时的笔试题,由于是两年来第一次笔试所以发挥的一般. 题目很侧重基础.也很常规.选择填空大题.选择填空记不清了.大概包括:  </p>
+<ol>
+<li>intent可以传递的数据类型? </li>
+<li>哪个是runtime exception?</li>
+<li>android 动画分为几类?  4</li>
+</ol>
+<p>大题包括 </p>
+<ol>
+<li>手写观察者</li>
+<li>如何避免anr.</li>
+<li>gc过程<a href="http://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html" target="_blank" rel="external">答案链接</a><br>剩下的忘了.</li>
+</ol>
+<p>然后是面试.基本就是对着简历面,面试官很nice,遇到不会的还会提示你,最后会给你讲一下.现在还能想起来的题目就剩下:</p>
+<ol>
+<li>泛型的局限性.</li>
+<li>命令模式的用途.</li>
+</ol>
+<p>明天二面,待续…</p>
+]]></content>
+      
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[安卓下一些好用的ui 库]]></title>
+      <url>/2018/01/20/%E5%AE%89%E5%8D%93%E4%B8%8B%E4%B8%80%E4%BA%9B%E5%A5%BD%E7%94%A8%E7%9A%84ui-%E5%BA%93/</url>
+      <content type="html"><![CDATA[<h3 id="u8BF4_u660E"><a href="#u8BF4_u660E" class="headerlink" title="说明"></a>说明</h3><p>一些我用过的好用的开源ui库,持续更新</p>
+<h3 id="u5217_u8868"><a href="#u5217_u8868" class="headerlink" title="列表"></a>列表</h3><ol>
+<li><a href="https://github.com/prolificinteractive/material-calendarview" target="_blank" rel="external">一个高度自定义的calendarView</a></li>
+<li><a href="https://github.com/scwang90/SmartRefreshLayout" target="_blank" rel="external">好用的下拉刷新</a></li>
+</ol>
+]]></content>
+      
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[分享一个kotlin中很好用的工具类]]></title>
       <url>/2018/01/15/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AAkotlin%E4%B8%AD%E5%BE%88%E5%A5%BD%E7%94%A8%E7%9A%84spgongjulei/</url>
       <content type="html"><![CDATA[<h3 id="u6548_u679C"><a href="#u6548_u679C" class="headerlink" title="效果"></a>效果</h3><p><code><br> //get default prefs<br>val prefs = PreferenceHelper.defaultPrefs(this)<br>//set any type of value in prefs<br>prefs[Constants.PREF_NAME] = “name”<br>//get any value from prefs<br>val name: String? = prefs[Constants.PREF_NAME]<br>//get value from prefs (with default value)<br>val age: Int? = prefs[Constants.PREF_AGE, 23]<br></code></p>
@@ -757,28 +814,106 @@ tv.setText(stringFromJNI());
     </entry>
     
     <entry>
-      <title><![CDATA[类型推理]]></title>
-      <url>/2016/11/11/%E7%B1%BB%E5%9E%8B%E6%8E%A8%E7%90%86/</url>
-      <content type="html"><![CDATA[<p>#类型推理<br>java编译器可以从方法的调用和该方法的声明来决定类型参数的类型，从而使调用变的有效，这叫做<em>类型推理</em>。推理算法决定了参数类型或是返回类型，最终推理算法尝试寻找最明确的可以应用与所有参数的类型。<br>为了阐明上述内容，举例如下，推理决定了pick方法的第二个参数是Serializable。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">static &lt;T&gt; T pick(T a1, T a2) &#123; return a2; &#125;</div><div class="line">Serializable s = pick(&quot;d&quot;, new ArrayList&lt;String&gt;());</div></pre></td></tr></table></figure></p>
-<p>###类型推理和泛型方法<br>在泛型方法这一节中我们介绍过类型推理，它可以使我们像调用普通方法一样调用泛型方法。举例如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">public class BoxDemo &#123;</div><div class="line"></div><div class="line">  public static &lt;U&gt; void addBox(U u, java.util.List&lt;Box&lt;U&gt;&gt; boxes) &#123;</div><div class="line">    Box&lt;U&gt; box = new Box&lt;&gt;();</div><div class="line">    box.set(u);</div><div class="line">    boxes.add(box);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  public static &lt;U&gt; void outputBoxes(java.util.List&lt;Box&lt;U&gt;&gt; boxes) &#123;</div><div class="line">    int counter = 0;</div><div class="line">    for (Box&lt;U&gt; box: boxes) &#123;</div><div class="line">      U boxContents = box.get();</div><div class="line">      System.out.println(&quot;Box #&quot; + counter + &quot; contains [&quot; +</div><div class="line">             boxContents.toString() + &quot;]&quot;);</div><div class="line">      counter++;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  public static void main(String[] args) &#123;</div><div class="line">    java.util.ArrayList&lt;Box&lt;Integer&gt;&gt; listOfIntegerBoxes =</div><div class="line">      new java.util.ArrayList&lt;&gt;();</div><div class="line">    BoxDemo.&lt;Integer&gt;addBox(Integer.valueOf(10), listOfIntegerBoxes);</div><div class="line">    BoxDemo.addBox(Integer.valueOf(20), listOfIntegerBoxes);</div><div class="line">    BoxDemo.addBox(Integer.valueOf(30), listOfIntegerBoxes);</div><div class="line">    BoxDemo.outputBoxes(listOfIntegerBoxes);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>运行程序结果如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Box #0 contains [10]</div><div class="line">Box #1 contains [20]</div><div class="line">Box #2 contains [30]</div></pre></td></tr></table></figure></p>
-<p>泛型方法addBox定义了一个名为U的类型参数，一般来说，Java编译器可以推理出泛型方法调用的类型参数，因此大部分情况下，我们并不需要显式的指出参数类型。举例来说，如果我们需要调用addBox,我们可以显式的标明参数如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">BoxDemo.&lt;Integer&gt;addBox(Integer.valueOf(10), listOfIntegerBoxes);</div></pre></td></tr></table></figure></p>
-<p>或者我们可以省略类型声明，Java编译器会推理出类型参数是一个Integer。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">BoxDemo.addBox(Integer.valueOf(20), listOfIntegerBoxes);</div></pre></td></tr></table></figure></p>
-<p>###类型推理和泛型类实例化<br>既然java编译器可以从上下文中推理出类型参数，我们可以将泛型类构造函数中的类型参数替换为<code>&lt;&gt;</code>,<code>&lt;&gt;</code>被称为<em>the diamond</em>(菱形)。<br>举例来说，考虑如下变量声明：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Map&lt;String, List&lt;String&gt;&gt; myMap = new HashMap&lt;String, List&lt;String&gt;&gt;();</div></pre></td></tr></table></figure></p>
-<p>我们可以声明如下，效果相同</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Map&lt;String, List&lt;String&gt;&gt; myMap = new HashMap&lt;&gt;();</div></pre></td></tr></table></figure>
-<p>需要注意的是一定要带上<code>&lt;&gt;</code>否则我们会得到一个警告，因为HashMap()构造函数引用的是HashMap的原生类型，而不是<code>Map&lt;String, List&lt;String&gt;&gt;</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Map&lt;String, List&lt;String&gt;&gt; myMap = new HashMap(); // unchecked conversion warning</div></pre></td></tr></table></figure></p>
-<p>###类型推理，泛型构造函数和非泛型类<br>需要注意无论一个类是不是泛型的，它的构造函数都可以是泛型的，考虑如下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">class MyClass&lt;X&gt; &#123;</div><div class="line">  &lt;T&gt; MyClass(T t) &#123;</div><div class="line">    // ...</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>我们实例化该类如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">new MyClass&lt;Integer&gt;(&quot;&quot;)</div></pre></td></tr></table></figure></p>
-<p>以上代码创建了一个<code>MyClass&lt;Integer&gt;</code>类型的类，它显式的声明了Integer作为X,隐式的声明了String作为T.<br>从java7我们可以声明如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">MyClass&lt;Integer&gt; myObject = new MyClass&lt;&gt;(&quot;&quot;);</div></pre></td></tr></table></figure></p>
-<p>需要注意的是，推理算法只能从调用参数，目标类型，期望的返回值中推理类型，推理算法并不能使用该代码以后的代码来推理参数类型。</p>
-<p>###目标类型<br>java编译器可以通过目标类型来推理出参数类型，表达式的目标类型是指java编译器根据表达式的位置来决定的，考虑Colections.emptyList方法，它的声明如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">static &lt;T&gt; List&lt;T&gt; emptyList();</div></pre></td></tr></table></figure></p>
-<p>有如下赋值表达式。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">List&lt;String&gt; listOne = Collections.emptyList();</div></pre></td></tr></table></figure></p>
-<p>以上的表达式期望一个<code>List&lt;String&gt;</code>实例，这就是<em>目标类型</em>。因为emptyList返回一个<code>List&lt;T&gt;</code>,编译器推断T一定是String，这在java7以后都是可用的。<br>但在某些情况下省略是不行的，考虑如下方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">void processStringList(List&lt;String&gt; stringList) &#123;</div><div class="line">    // process stringList</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>如果我们在java7中这样调用：<br><code>processStringList(Collections.emptyList());</code></p>
-<p>我们就会得到错误信息：<code>List&lt;Object&gt; cannot be converted to List&lt;String&gt;</code><br>编译器需要赋给T一个值，所以它从Object开始尝试，因此Collections.emptyList返回一个List<object>对象，这和processStringList不符。因此在java7中你必须这样写<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">processStringList(Collections.&lt;String&gt;emptyList());</div></pre></td></tr></table></figure></object></p>
-<p>但是在java8中，目标类型被扩展为包括函数参数，所以写成下面这样也可以<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">processStringList(Collections.emptyList());</div></pre></td></tr></table></figure></p>
-<p><a href="../通配符">下一页</a></p>
+      <title><![CDATA[为什么用泛型？]]></title>
+      <url>/2016/11/11/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A8%E6%B3%9B%E5%9E%8B/</url>
+      <content type="html"><![CDATA[<p>#为什么用泛型？<br>一言以蔽之，当你定义类，接口，方法的时候泛型可以使类型（类和接口）作为参数。和声明方法时那些普通的参数相似，类型参数可以使你针对于不同的输入复用代码。但是和普通参数不同的是普通参数的输入是值，而类型参数的输入是类型。</p>
+<p>使用参数的代码拥有更多的好处：</p>
+<ul>
+<li>更强的编译时类型检查<br>Java 编译器针对泛型使用强类型检查。如果代码中有类型错误更容易被发现。修复编译时错误比运行时错误容易得多。因为运行时错误更不容易被发现。</li>
+<li><p>消除类型转换<br>   以下的代码片段需要类型转换：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">List list = new ArrayList();  </div><div class="line">list.add(&quot;hello&quot;);  </div><div class="line">String s = (String) list.get(0);</div></pre></td></tr></table></figure>
+<p>  当我们使用泛型重写这段代码之后，代码就不需要类型转换了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">List&lt;String&gt; list = new ArrayList&lt;String&gt;();</div><div class="line">list.add(&quot;hello&quot;);</div><div class="line">String s = list.get(0);   // no cast</div></pre></td></tr></table></figure>
+</li>
+<li><p>使编程人员可以实现泛型算法。<br>通过使用泛型，编程人员可以实现泛型算法，这些算法可以应用于那些存放不同类型的集合中，这些算法可以被定制，而且具有类型安全和更好的可读性。<br><a href="../泛型类型">下一页</a></p>
+</li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> java </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 翻译 </tag>
+            
+            <tag> 语法 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[上界通配符]]></title>
+      <url>/2016/11/11/%E4%B8%8A%E7%95%8C%E9%80%9A%E9%85%8D%E7%AC%A6/</url>
+      <content type="html"><![CDATA[<p>###上界通配符<br>我们可以使用上界通配符来放松对变量的限制。举例来说，如果你想写一个适用在<code>List&lt;Integer&gt;, List&lt;Double&gt;, 和 List&lt;Number&gt;</code>上的方法，你可以通过上界通配符来实现。<br>为了声明一个上界通配符，使用通配符‘？’，然后是<strong>extends</strong>关键字。再然后是上界。注意在此extends既指继承也指实现。<br><code>List&lt;? extends Number&gt;</code>可以适用于<code>List&lt;Integer&gt;, List&lt;Double&gt;</code>,<code>但是List&lt;Number&gt;</code>只适用于<code>但是List&lt;Number&gt;</code>。<br>考虑process方法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">public static void process(List&lt;? extends Foo&gt; list) &#123; /* ... */ &#125;</div></pre></td></tr></table></figure></p>
+<p>上界通配符<code>&lt;? extends Foo&gt;</code>适用于Foo和Foo的所有子类。process方法可以访问关于Foo的list<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">public static void process(List&lt;? extends Foo&gt; list) &#123;</div><div class="line">    for (Foo elem : list) &#123;</div><div class="line">        // ...</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>sumOfList方法返回list中所有元素的和：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">public static double sumOfList(List&lt;? extends Number&gt; list) &#123;</div><div class="line">    double s = 0.0;</div><div class="line">    for (Number n : list)</div><div class="line">        s += n.doubleValue();</div><div class="line">    return s;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>以下代码使用一个Integer的list，会输出<code>sum=6.0</code>:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">List&lt;Integer&gt; li = Arrays.asList(1, 2, 3);</div><div class="line">System.out.println(&quot;sum = &quot; + sumOfList(li));</div></pre></td></tr></table></figure></p>
+<p>同样也可以使用double，以下的代码输出<code>sum=7.0</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">List&lt;Double&gt; ld = Arrays.asList(1.2, 2.3, 3.5);</div><div class="line">System.out.println(&quot;sum = &quot; + sumOfList(ld));</div></pre></td></tr></table></figure></p>
+<p><a href="../无界通配符">下一页</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> java </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 翻译 </tag>
+            
+            <tag> 语法 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[泛型,继承和子类型]]></title>
+      <url>/2016/11/11/%E6%B3%9B%E5%9E%8B,%E7%BB%A7%E6%89%BF%E5%92%8C%E5%AD%90%E7%B1%BB%E5%9E%8B/</url>
+      <content type="html"><![CDATA[<p>正如你所知，如果一个类型适配另一个类型，那么我们可以用这个类型的对象给另一个类型的对象赋值，举例来说，因为Object是Integer的父类我们可以给一个Object对象一个Integer的值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Object someObject = new Object();</div><div class="line">Integer someInteger = new Integer(10);</div><div class="line">someObject = someInteger;   // OK</div></pre></td></tr></table></figure></p>
+<p>在面向对象的术语中，这叫做“是一个”的关系。既然Integer是一个Obejct，这个赋值就是被允许的。而且既然Integer是一个Number,所以以下代码也是正确的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">public void someMethod(Number n) &#123; /* ... */ &#125;</div><div class="line"></div><div class="line">someMethod(new Integer(10));   // OK</div><div class="line">someMethod(new Double(10.1));   // OK</div></pre></td></tr></table></figure></p>
+<p>这一点在泛型上也适用，声明一个泛型调用，以Number作为它的类型参数。这样如果使用适配Number的类型都可以作为类型参数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Box&lt;Number&gt; box = new Box&lt;Number&gt;();</div><div class="line">box.add(new Integer(10));   // OK</div><div class="line">box.add(new Double(10.1));  // OK</div></pre></td></tr></table></figure></p>
+<p>现在我们考虑如下方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">public void boxTest(Box&lt;Number&gt; n) &#123; /* ... */ &#125;</div></pre></td></tr></table></figure></p>
+<p>它可以接收什么样的参数？通过方法声明，我们可以看出它只接受一个Box<number>类型的参数，但是这意味着什么？是否和你期望的一样它可以接受Box<integer>或是Box<double>?答案是不行，因为Box<integer>不是Box<number>的子类型。<br>这在泛型编程中可能有些难理解，但是这是泛型编程的一个重点<br><img src="https://docs.oracle.com/javase/tutorial/figures/java/generics-subtypeRelationship.gif" alt=""><br>虽然Integer是Number的子类，但是<code>Box&lt;Integer&gt;</code>并不是<code>Box&lt;Number&gt;</code>的子类。</number></integer></double></integer></number></p>
+<p>需要注意：假设有A,B两个类,不管A,B是什么关系，<code>MyClass&lt;A&gt;</code>和<code>MyClass&lt;B&gt;</code>都没有任何关系，<code>MyClass&lt;A&gt;</code>,<code>MyClass&lt;B&gt;</code>的共同父类是Object。<br>如果你想了解如何创建泛型间的父子关系，请参考<a href="https://docs.oracle.com/javase/tutorial/java/generics/subtyping.html" target="_blank" rel="external">通配符和子类型</a>。</p>
+<p>###泛型类和子类型<br>我们可以通过继承或实现一个泛型类来创建它的子类型，两者的关系依赖于你是继承还是实现它。<br>以Collections类为例，<code>ArrayList&lt;E&gt;</code>实现了<code>List&lt;E&gt;</code>,<code>List&lt;E&gt;</code>继承了<code>Collection&lt;E&gt;</code>,所以说<code>ArrayList&lt;String&gt;</code>是<code>List&lt;String&gt;</code>的子类型。既然我们没有变类型参数。所以他们之间的关系如下图所示：<br><img src="https://docs.oracle.com/javase/tutorial/figures/java/generics-sampleHierarchy.gif" alt=""><br>假设我们现在想定义哦我们呢自己的list接口PayLoadList,它有一个可变的类型参数P,它的声明可能像这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">interface PayloadList&lt;E,P&gt; extends List&lt;E&gt; &#123;</div><div class="line">  void setPayload(int index, P val);</div><div class="line">  ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>以下的类都是<code>List&lt;String&gt;</code>类的子类。</p>
+<ul>
+<li><code>PayloadList&lt;String,String&gt;</code></li>
+<li><code>PayloadList&lt;String,Integer&gt;</code></li>
+<li><code>PayloadList&lt;String,Exception&gt;</code><br><img src="https://docs.oracle.com/javase/tutorial/figures/java/generics-payloadListHierarchy.gif" alt=""><br><a href="../类型推理">下一页</a></li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> java </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 翻译 </tag>
+            
+            <tag> 语法 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[通配符]]></title>
+      <url>/2016/11/11/%E9%80%9A%E9%85%8D%E7%AC%A6/</url>
+      <content type="html"><![CDATA[<p>#通配符<br>在泛型编程中，问号(?)被称作通配符。表示未知的类型。它可以被用在很多情景中，作为参数类型，局部变量，偶尔在返回类型也用它（尽管类型明确些会更好），通配符不鞥用在泛型方法调用时的类型参数或是泛型类的创建中。<br>以下的章节我们将详细讨论通配符的上界，下界和通配符的捕获。<br><a href="../上界通配符">下一页</a></p>
 ]]></content>
       
         <categories>
@@ -805,6 +940,41 @@ tv.setText(stringFromJNI());
 <p>这个方法的实现是很简单的，但是我们会得到一个编译错误，因为&gt;符号只能用在基本类型上。为了修正这个错误，使用一个受限于Comparable<t>接口的类型参数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">public interface Comparable&lt;T&gt; &#123;</div><div class="line">    public int compareTo(T o);</div><div class="line">&#125;</div></pre></td></tr></table></figure></t></p>
 <p>最终的代码会如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">public static &lt;T extends Comparable&lt;T&gt;&gt; int countGreaterThan(T[] anArray, T elem) &#123;</div><div class="line">    int count = 0;</div><div class="line">    for (T e : anArray)</div><div class="line">        if (e.compareTo(elem) &gt; 0)</div><div class="line">            ++count;</div><div class="line">    return count;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p><a href="../泛型,继承和子类型">下一页</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> java </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 翻译 </tag>
+            
+            <tag> 语法 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[原生类型]]></title>
+      <url>/2016/11/11/%E5%8E%9F%E7%94%9F%E7%B1%BB%E5%9E%8B/</url>
+      <content type="html"><![CDATA[<p>#原生类型<br>原生类型是指那些不带类型参数的泛型类或接口。举例来说，对于泛型类Box:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">public class Box&lt;T&gt; &#123;</div><div class="line">    public void set(T t) &#123; /* ... */ &#125;</div><div class="line">    // ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>为了创建参数化的Box<t>类，我们需要提供一个类型参数给T,:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Box&lt;Integer&gt; intBox=new Box&lt;&gt;();</div></pre></td></tr></table></figure></t></p>
+<p>如果实际的类型参数被隐藏起来，你可以创建一个原生类型的Box<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Box rawBox = new Box();</div></pre></td></tr></table></figure></p>
+<p>因此Box是<code>Box&lt;T&gt;</code>的原生版，然而一个非泛型类或接口不是原生类型。</p>
+<p>原生类型一般在遗留代码中出现，因为很多API的类（比如说Collections）在JDK5.0之前不是泛型。我们大体上可以使用之前的特性。比如使用一个Object给Box赋值。为了代码兼容性，将泛型版本的对象赋值给原生版本是可以的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Box&lt;String&gt; stringBox = new Box&lt;&gt;();</div><div class="line">Box rawBox = stringBox;               // OK</div></pre></td></tr></table></figure></p>
+<p>但是如果反过来就会有警告出现<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Box rawBox = new Box();           // rawBox is a raw type of Box&lt;T&gt;</div><div class="line">Box&lt;Integer&gt; intBox = rawBox;     // warning: unchecked conversion</div></pre></td></tr></table></figure></p>
+<p>如果原生类型调用泛型方法一样会产生警告<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Box&lt;String&gt; stringBox = new Box&lt;&gt;();</div><div class="line">Box rawBox = stringBox;</div><div class="line">rawBox.set(8);  // warning: unchecked invocation to set(T)</div></pre></td></tr></table></figure></p>
+<p>这个警告的出现是因为原生类型没有经过类型的检查，将不安全代码的检查推迟到了软件运行时。因此，我们应该避免使用原生类型。</p>
+<p>类型删除部分有更多关于java编译器如何使用原生类型的信息。</p>
+<p>###’未检查错误’信息<br>正如之前所说的那样，当遗留代码和泛型代码混用的时候，你也许会遇到下面这样的警告信息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Note: Example.java uses unchecked or unsafe operations.</div><div class="line">Note: Recompile with -Xlint:unchecked for details.</div></pre></td></tr></table></figure></p>
+<p>当旧的API操作原生类型的时，可能会出现这种情况：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">public class WarningDemo &#123;</div><div class="line">    public static void main(String[] args)&#123;</div><div class="line">        Box&lt;Integer&gt; bi;</div><div class="line">        bi = createBox();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    static Box createBox()&#123;</div><div class="line">        return new Box();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>“unchecked”表示编译器没有足够的信息进行类型检查来保证类型的安全。默认情况下这个警告是被禁用的。如果你想看到这个警告，请在编译时加上 -Xlint:unchecked选项。<br>加上这个选项后重新编译我们的得到如下的编译信息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">WarningDemo.java:4: warning: [unchecked] unchecked conversion</div><div class="line">found   : Box</div><div class="line">required: Box&lt;java.lang.Integer&gt;</div><div class="line">        bi = createBox();</div><div class="line">                      ^</div><div class="line">1 warning</div></pre></td></tr></table></figure></p>
+<p>为了彻底禁用未检查警告，使用’-Xlint:-unchecked’选项。注解<code> @SuppressWarnings(“unchecked”)</code>抑制了未检查警告。<br><a href="../泛型方法">下一页</a></p>
 ]]></content>
       
         <categories>
@@ -878,21 +1048,54 @@ tv.setText(stringFromJNI());
     </entry>
     
     <entry>
-      <title><![CDATA[原生类型]]></title>
-      <url>/2016/11/11/%E5%8E%9F%E7%94%9F%E7%B1%BB%E5%9E%8B/</url>
-      <content type="html"><![CDATA[<p>#原生类型<br>原生类型是指那些不带类型参数的泛型类或接口。举例来说，对于泛型类Box:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">public class Box&lt;T&gt; &#123;</div><div class="line">    public void set(T t) &#123; /* ... */ &#125;</div><div class="line">    // ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>为了创建参数化的Box<t>类，我们需要提供一个类型参数给T,:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Box&lt;Integer&gt; intBox=new Box&lt;&gt;();</div></pre></td></tr></table></figure></t></p>
-<p>如果实际的类型参数被隐藏起来，你可以创建一个原生类型的Box<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Box rawBox = new Box();</div></pre></td></tr></table></figure></p>
-<p>因此Box是<code>Box&lt;T&gt;</code>的原生版，然而一个非泛型类或接口不是原生类型。</p>
-<p>原生类型一般在遗留代码中出现，因为很多API的类（比如说Collections）在JDK5.0之前不是泛型。我们大体上可以使用之前的特性。比如使用一个Object给Box赋值。为了代码兼容性，将泛型版本的对象赋值给原生版本是可以的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Box&lt;String&gt; stringBox = new Box&lt;&gt;();</div><div class="line">Box rawBox = stringBox;               // OK</div></pre></td></tr></table></figure></p>
-<p>但是如果反过来就会有警告出现<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Box rawBox = new Box();           // rawBox is a raw type of Box&lt;T&gt;</div><div class="line">Box&lt;Integer&gt; intBox = rawBox;     // warning: unchecked conversion</div></pre></td></tr></table></figure></p>
-<p>如果原生类型调用泛型方法一样会产生警告<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Box&lt;String&gt; stringBox = new Box&lt;&gt;();</div><div class="line">Box rawBox = stringBox;</div><div class="line">rawBox.set(8);  // warning: unchecked invocation to set(T)</div></pre></td></tr></table></figure></p>
-<p>这个警告的出现是因为原生类型没有经过类型的检查，将不安全代码的检查推迟到了软件运行时。因此，我们应该避免使用原生类型。</p>
-<p>类型删除部分有更多关于java编译器如何使用原生类型的信息。</p>
-<p>###’未检查错误’信息<br>正如之前所说的那样，当遗留代码和泛型代码混用的时候，你也许会遇到下面这样的警告信息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Note: Example.java uses unchecked or unsafe operations.</div><div class="line">Note: Recompile with -Xlint:unchecked for details.</div></pre></td></tr></table></figure></p>
-<p>当旧的API操作原生类型的时，可能会出现这种情况：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">public class WarningDemo &#123;</div><div class="line">    public static void main(String[] args)&#123;</div><div class="line">        Box&lt;Integer&gt; bi;</div><div class="line">        bi = createBox();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    static Box createBox()&#123;</div><div class="line">        return new Box();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>“unchecked”表示编译器没有足够的信息进行类型检查来保证类型的安全。默认情况下这个警告是被禁用的。如果你想看到这个警告，请在编译时加上 -Xlint:unchecked选项。<br>加上这个选项后重新编译我们的得到如下的编译信息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">WarningDemo.java:4: warning: [unchecked] unchecked conversion</div><div class="line">found   : Box</div><div class="line">required: Box&lt;java.lang.Integer&gt;</div><div class="line">        bi = createBox();</div><div class="line">                      ^</div><div class="line">1 warning</div></pre></td></tr></table></figure></p>
-<p>为了彻底禁用未检查警告，使用’-Xlint:-unchecked’选项。注解<code> @SuppressWarnings(“unchecked”)</code>抑制了未检查警告。<br><a href="../泛型方法">下一页</a></p>
+      <title><![CDATA[泛型方法]]></title>
+      <url>/2016/11/11/%E6%B3%9B%E5%9E%8B%E6%96%B9%E6%B3%95/</url>
+      <content type="html"><![CDATA[<p>#泛型方法<br>泛型方法是声明了它自己的类型参数的方法，这和声明泛型类型有些相似。但是类型参数仅仅被限制在这个声明的方法中。静态或是非静态的都可以，泛型类的构造函数也是这样。<br>泛型方法包括一个在尖括号内，位置是返回类型之前的类型参数。对于静态泛型方法，类型参数必须是在方法返回类型之前。<br>Util类包含一个比较两个Pair对象的泛型方法compare，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">public class Util &#123;</div><div class="line">    public static &lt;K, V&gt; boolean compare(Pair&lt;K, V&gt; p1, Pair&lt;K, V&gt; p2) &#123;</div><div class="line">        return p1.getKey().equals(p2.getKey()) &amp;&amp;</div><div class="line">               p1.getValue().equals(p2.getValue());</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class Pair&lt;K, V&gt; &#123;</div><div class="line"></div><div class="line">    private K key;</div><div class="line">    private V value;</div><div class="line"></div><div class="line">    public Pair(K key, V value) &#123;</div><div class="line">        this.key = key;</div><div class="line">        this.value = value;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setKey(K key) &#123; this.key = key; &#125;</div><div class="line">    public void setValue(V value) &#123; this.value = value; &#125;</div><div class="line">    public K getKey()   &#123; return key; &#125;</div><div class="line">    public V getValue() &#123; return value; &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>我们可以通过如下方式调用这个方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Pair&lt;Integer, String&gt; p1 = new Pair&lt;&gt;(1, &quot;apple&quot;);</div><div class="line">Pair&lt;Integer, String&gt; p2 = new Pair&lt;&gt;(2, &quot;pear&quot;);</div><div class="line">boolean same = Util.&lt;Integer, String&gt;compare(p1, p2);</div></pre></td></tr></table></figure></p>
+<p>在上面的代码中类型被显式的声明了，事实上调用方法时类型参数可以不写出来：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Pair&lt;Integer, String&gt; p1 = new Pair&lt;&gt;(1, &quot;apple&quot;);</div><div class="line">Pair&lt;Integer, String&gt; p2 = new Pair&lt;&gt;(2, &quot;pear&quot;);</div><div class="line">boolean same = Util.compare(p1, p2);</div></pre></td></tr></table></figure></p>
+<p>这个特性被称为类型推理。允许你以调用普通方法的方式来调用泛型方法，关于更多的细节我们将会在类型推理<a href="https://docs.oracle.com/javase/tutorial/java/generics/genTypeInference.html" target="_blank" rel="external">类型推理</a>中说明。<br><a href="../受限的类型参数">下一页</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> java </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 翻译 </tag>
+            
+            <tag> 语法 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[类型推理]]></title>
+      <url>/2016/11/11/%E7%B1%BB%E5%9E%8B%E6%8E%A8%E7%90%86/</url>
+      <content type="html"><![CDATA[<p>#类型推理<br>java编译器可以从方法的调用和该方法的声明来决定类型参数的类型，从而使调用变的有效，这叫做<em>类型推理</em>。推理算法决定了参数类型或是返回类型，最终推理算法尝试寻找最明确的可以应用与所有参数的类型。<br>为了阐明上述内容，举例如下，推理决定了pick方法的第二个参数是Serializable。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">static &lt;T&gt; T pick(T a1, T a2) &#123; return a2; &#125;</div><div class="line">Serializable s = pick(&quot;d&quot;, new ArrayList&lt;String&gt;());</div></pre></td></tr></table></figure></p>
+<p>###类型推理和泛型方法<br>在泛型方法这一节中我们介绍过类型推理，它可以使我们像调用普通方法一样调用泛型方法。举例如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">public class BoxDemo &#123;</div><div class="line"></div><div class="line">  public static &lt;U&gt; void addBox(U u, java.util.List&lt;Box&lt;U&gt;&gt; boxes) &#123;</div><div class="line">    Box&lt;U&gt; box = new Box&lt;&gt;();</div><div class="line">    box.set(u);</div><div class="line">    boxes.add(box);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  public static &lt;U&gt; void outputBoxes(java.util.List&lt;Box&lt;U&gt;&gt; boxes) &#123;</div><div class="line">    int counter = 0;</div><div class="line">    for (Box&lt;U&gt; box: boxes) &#123;</div><div class="line">      U boxContents = box.get();</div><div class="line">      System.out.println(&quot;Box #&quot; + counter + &quot; contains [&quot; +</div><div class="line">             boxContents.toString() + &quot;]&quot;);</div><div class="line">      counter++;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  public static void main(String[] args) &#123;</div><div class="line">    java.util.ArrayList&lt;Box&lt;Integer&gt;&gt; listOfIntegerBoxes =</div><div class="line">      new java.util.ArrayList&lt;&gt;();</div><div class="line">    BoxDemo.&lt;Integer&gt;addBox(Integer.valueOf(10), listOfIntegerBoxes);</div><div class="line">    BoxDemo.addBox(Integer.valueOf(20), listOfIntegerBoxes);</div><div class="line">    BoxDemo.addBox(Integer.valueOf(30), listOfIntegerBoxes);</div><div class="line">    BoxDemo.outputBoxes(listOfIntegerBoxes);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>运行程序结果如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Box #0 contains [10]</div><div class="line">Box #1 contains [20]</div><div class="line">Box #2 contains [30]</div></pre></td></tr></table></figure></p>
+<p>泛型方法addBox定义了一个名为U的类型参数，一般来说，Java编译器可以推理出泛型方法调用的类型参数，因此大部分情况下，我们并不需要显式的指出参数类型。举例来说，如果我们需要调用addBox,我们可以显式的标明参数如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">BoxDemo.&lt;Integer&gt;addBox(Integer.valueOf(10), listOfIntegerBoxes);</div></pre></td></tr></table></figure></p>
+<p>或者我们可以省略类型声明，Java编译器会推理出类型参数是一个Integer。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">BoxDemo.addBox(Integer.valueOf(20), listOfIntegerBoxes);</div></pre></td></tr></table></figure></p>
+<p>###类型推理和泛型类实例化<br>既然java编译器可以从上下文中推理出类型参数，我们可以将泛型类构造函数中的类型参数替换为<code>&lt;&gt;</code>,<code>&lt;&gt;</code>被称为<em>the diamond</em>(菱形)。<br>举例来说，考虑如下变量声明：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Map&lt;String, List&lt;String&gt;&gt; myMap = new HashMap&lt;String, List&lt;String&gt;&gt;();</div></pre></td></tr></table></figure></p>
+<p>我们可以声明如下，效果相同</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Map&lt;String, List&lt;String&gt;&gt; myMap = new HashMap&lt;&gt;();</div></pre></td></tr></table></figure>
+<p>需要注意的是一定要带上<code>&lt;&gt;</code>否则我们会得到一个警告，因为HashMap()构造函数引用的是HashMap的原生类型，而不是<code>Map&lt;String, List&lt;String&gt;&gt;</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Map&lt;String, List&lt;String&gt;&gt; myMap = new HashMap(); // unchecked conversion warning</div></pre></td></tr></table></figure></p>
+<p>###类型推理，泛型构造函数和非泛型类<br>需要注意无论一个类是不是泛型的，它的构造函数都可以是泛型的，考虑如下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">class MyClass&lt;X&gt; &#123;</div><div class="line">  &lt;T&gt; MyClass(T t) &#123;</div><div class="line">    // ...</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>我们实例化该类如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">new MyClass&lt;Integer&gt;(&quot;&quot;)</div></pre></td></tr></table></figure></p>
+<p>以上代码创建了一个<code>MyClass&lt;Integer&gt;</code>类型的类，它显式的声明了Integer作为X,隐式的声明了String作为T.<br>从java7我们可以声明如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">MyClass&lt;Integer&gt; myObject = new MyClass&lt;&gt;(&quot;&quot;);</div></pre></td></tr></table></figure></p>
+<p>需要注意的是，推理算法只能从调用参数，目标类型，期望的返回值中推理类型，推理算法并不能使用该代码以后的代码来推理参数类型。</p>
+<p>###目标类型<br>java编译器可以通过目标类型来推理出参数类型，表达式的目标类型是指java编译器根据表达式的位置来决定的，考虑Colections.emptyList方法，它的声明如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">static &lt;T&gt; List&lt;T&gt; emptyList();</div></pre></td></tr></table></figure></p>
+<p>有如下赋值表达式。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">List&lt;String&gt; listOne = Collections.emptyList();</div></pre></td></tr></table></figure></p>
+<p>以上的表达式期望一个<code>List&lt;String&gt;</code>实例，这就是<em>目标类型</em>。因为emptyList返回一个<code>List&lt;T&gt;</code>,编译器推断T一定是String，这在java7以后都是可用的。<br>但在某些情况下省略是不行的，考虑如下方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">void processStringList(List&lt;String&gt; stringList) &#123;</div><div class="line">    // process stringList</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>如果我们在java7中这样调用：<br><code>processStringList(Collections.emptyList());</code></p>
+<p>我们就会得到错误信息：<code>List&lt;Object&gt; cannot be converted to List&lt;String&gt;</code><br>编译器需要赋给T一个值，所以它从Object开始尝试，因此Collections.emptyList返回一个List<object>对象，这和processStringList不符。因此在java7中你必须这样写<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">processStringList(Collections.&lt;String&gt;emptyList());</div></pre></td></tr></table></figure></object></p>
+<p>但是在java8中，目标类型被扩展为包括函数参数，所以写成下面这样也可以<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">processStringList(Collections.emptyList());</div></pre></td></tr></table></figure></p>
+<p><a href="../通配符">下一页</a></p>
 ]]></content>
       
         <categories>
@@ -975,166 +1178,20 @@ tv.setText(stringFromJNI());
         
     </entry>
     
-    <entry>
-      <title><![CDATA[泛型,继承和子类型]]></title>
-      <url>/2016/11/11/%E6%B3%9B%E5%9E%8B,%E7%BB%A7%E6%89%BF%E5%92%8C%E5%AD%90%E7%B1%BB%E5%9E%8B/</url>
-      <content type="html"><![CDATA[<p>正如你所知，如果一个类型适配另一个类型，那么我们可以用这个类型的对象给另一个类型的对象赋值，举例来说，因为Object是Integer的父类我们可以给一个Object对象一个Integer的值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Object someObject = new Object();</div><div class="line">Integer someInteger = new Integer(10);</div><div class="line">someObject = someInteger;   // OK</div></pre></td></tr></table></figure></p>
-<p>在面向对象的术语中，这叫做“是一个”的关系。既然Integer是一个Obejct，这个赋值就是被允许的。而且既然Integer是一个Number,所以以下代码也是正确的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">public void someMethod(Number n) &#123; /* ... */ &#125;</div><div class="line"></div><div class="line">someMethod(new Integer(10));   // OK</div><div class="line">someMethod(new Double(10.1));   // OK</div></pre></td></tr></table></figure></p>
-<p>这一点在泛型上也适用，声明一个泛型调用，以Number作为它的类型参数。这样如果使用适配Number的类型都可以作为类型参数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Box&lt;Number&gt; box = new Box&lt;Number&gt;();</div><div class="line">box.add(new Integer(10));   // OK</div><div class="line">box.add(new Double(10.1));  // OK</div></pre></td></tr></table></figure></p>
-<p>现在我们考虑如下方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">public void boxTest(Box&lt;Number&gt; n) &#123; /* ... */ &#125;</div></pre></td></tr></table></figure></p>
-<p>它可以接收什么样的参数？通过方法声明，我们可以看出它只接受一个Box<number>类型的参数，但是这意味着什么？是否和你期望的一样它可以接受Box<integer>或是Box<double>?答案是不行，因为Box<integer>不是Box<number>的子类型。<br>这在泛型编程中可能有些难理解，但是这是泛型编程的一个重点<br><img src="https://docs.oracle.com/javase/tutorial/figures/java/generics-subtypeRelationship.gif" alt=""><br>虽然Integer是Number的子类，但是<code>Box&lt;Integer&gt;</code>并不是<code>Box&lt;Number&gt;</code>的子类。</number></integer></double></integer></number></p>
-<p>需要注意：假设有A,B两个类,不管A,B是什么关系，<code>MyClass&lt;A&gt;</code>和<code>MyClass&lt;B&gt;</code>都没有任何关系，<code>MyClass&lt;A&gt;</code>,<code>MyClass&lt;B&gt;</code>的共同父类是Object。<br>如果你想了解如何创建泛型间的父子关系，请参考<a href="https://docs.oracle.com/javase/tutorial/java/generics/subtyping.html" target="_blank" rel="external">通配符和子类型</a>。</p>
-<p>###泛型类和子类型<br>我们可以通过继承或实现一个泛型类来创建它的子类型，两者的关系依赖于你是继承还是实现它。<br>以Collections类为例，<code>ArrayList&lt;E&gt;</code>实现了<code>List&lt;E&gt;</code>,<code>List&lt;E&gt;</code>继承了<code>Collection&lt;E&gt;</code>,所以说<code>ArrayList&lt;String&gt;</code>是<code>List&lt;String&gt;</code>的子类型。既然我们没有变类型参数。所以他们之间的关系如下图所示：<br><img src="https://docs.oracle.com/javase/tutorial/figures/java/generics-sampleHierarchy.gif" alt=""><br>假设我们现在想定义哦我们呢自己的list接口PayLoadList,它有一个可变的类型参数P,它的声明可能像这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">interface PayloadList&lt;E,P&gt; extends List&lt;E&gt; &#123;</div><div class="line">  void setPayload(int index, P val);</div><div class="line">  ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>以下的类都是<code>List&lt;String&gt;</code>类的子类。</p>
-<ul>
-<li><code>PayloadList&lt;String,String&gt;</code></li>
-<li><code>PayloadList&lt;String,Integer&gt;</code></li>
-<li><code>PayloadList&lt;String,Exception&gt;</code><br><img src="https://docs.oracle.com/javase/tutorial/figures/java/generics-payloadListHierarchy.gif" alt=""><br><a href="../类型推理">下一页</a></li>
-</ul>
-]]></content>
-      
-        <categories>
-            
-            <category> java </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> 翻译 </tag>
-            
-            <tag> 语法 </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[上界通配符]]></title>
-      <url>/2016/11/11/%E4%B8%8A%E7%95%8C%E9%80%9A%E9%85%8D%E7%AC%A6/</url>
-      <content type="html"><![CDATA[<p>###上界通配符<br>我们可以使用上界通配符来放松对变量的限制。举例来说，如果你想写一个适用在<code>List&lt;Integer&gt;, List&lt;Double&gt;, 和 List&lt;Number&gt;</code>上的方法，你可以通过上界通配符来实现。<br>为了声明一个上界通配符，使用通配符‘？’，然后是<strong>extends</strong>关键字。再然后是上界。注意在此extends既指继承也指实现。<br><code>List&lt;? extends Number&gt;</code>可以适用于<code>List&lt;Integer&gt;, List&lt;Double&gt;</code>,<code>但是List&lt;Number&gt;</code>只适用于<code>但是List&lt;Number&gt;</code>。<br>考虑process方法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">public static void process(List&lt;? extends Foo&gt; list) &#123; /* ... */ &#125;</div></pre></td></tr></table></figure></p>
-<p>上界通配符<code>&lt;? extends Foo&gt;</code>适用于Foo和Foo的所有子类。process方法可以访问关于Foo的list<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">public static void process(List&lt;? extends Foo&gt; list) &#123;</div><div class="line">    for (Foo elem : list) &#123;</div><div class="line">        // ...</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>sumOfList方法返回list中所有元素的和：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">public static double sumOfList(List&lt;? extends Number&gt; list) &#123;</div><div class="line">    double s = 0.0;</div><div class="line">    for (Number n : list)</div><div class="line">        s += n.doubleValue();</div><div class="line">    return s;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>以下代码使用一个Integer的list，会输出<code>sum=6.0</code>:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">List&lt;Integer&gt; li = Arrays.asList(1, 2, 3);</div><div class="line">System.out.println(&quot;sum = &quot; + sumOfList(li));</div></pre></td></tr></table></figure></p>
-<p>同样也可以使用double，以下的代码输出<code>sum=7.0</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">List&lt;Double&gt; ld = Arrays.asList(1.2, 2.3, 3.5);</div><div class="line">System.out.println(&quot;sum = &quot; + sumOfList(ld));</div></pre></td></tr></table></figure></p>
-<p><a href="../无界通配符">下一页</a></p>
-]]></content>
-      
-        <categories>
-            
-            <category> java </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> 翻译 </tag>
-            
-            <tag> 语法 </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[为什么用泛型？]]></title>
-      <url>/2016/11/11/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A8%E6%B3%9B%E5%9E%8B/</url>
-      <content type="html"><![CDATA[<p>#为什么用泛型？<br>一言以蔽之，当你定义类，接口，方法的时候泛型可以使类型（类和接口）作为参数。和声明方法时那些普通的参数相似，类型参数可以使你针对于不同的输入复用代码。但是和普通参数不同的是普通参数的输入是值，而类型参数的输入是类型。</p>
-<p>使用参数的代码拥有更多的好处：</p>
-<ul>
-<li>更强的编译时类型检查<br>Java 编译器针对泛型使用强类型检查。如果代码中有类型错误更容易被发现。修复编译时错误比运行时错误容易得多。因为运行时错误更不容易被发现。</li>
-<li><p>消除类型转换<br>   以下的代码片段需要类型转换：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">List list = new ArrayList();  </div><div class="line">list.add(&quot;hello&quot;);  </div><div class="line">String s = (String) list.get(0);</div></pre></td></tr></table></figure>
-<p>  当我们使用泛型重写这段代码之后，代码就不需要类型转换了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">List&lt;String&gt; list = new ArrayList&lt;String&gt;();</div><div class="line">list.add(&quot;hello&quot;);</div><div class="line">String s = list.get(0);   // no cast</div></pre></td></tr></table></figure>
-</li>
-<li><p>使编程人员可以实现泛型算法。<br>通过使用泛型，编程人员可以实现泛型算法，这些算法可以应用于那些存放不同类型的集合中，这些算法可以被定制，而且具有类型安全和更好的可读性。<br><a href="../泛型类型">下一页</a></p>
-</li>
-</ul>
-]]></content>
-      
-        <categories>
-            
-            <category> java </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> 翻译 </tag>
-            
-            <tag> 语法 </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[泛型方法]]></title>
-      <url>/2016/11/11/%E6%B3%9B%E5%9E%8B%E6%96%B9%E6%B3%95/</url>
-      <content type="html"><![CDATA[<p>#泛型方法<br>泛型方法是声明了它自己的类型参数的方法，这和声明泛型类型有些相似。但是类型参数仅仅被限制在这个声明的方法中。静态或是非静态的都可以，泛型类的构造函数也是这样。<br>泛型方法包括一个在尖括号内，位置是返回类型之前的类型参数。对于静态泛型方法，类型参数必须是在方法返回类型之前。<br>Util类包含一个比较两个Pair对象的泛型方法compare，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">public class Util &#123;</div><div class="line">    public static &lt;K, V&gt; boolean compare(Pair&lt;K, V&gt; p1, Pair&lt;K, V&gt; p2) &#123;</div><div class="line">        return p1.getKey().equals(p2.getKey()) &amp;&amp;</div><div class="line">               p1.getValue().equals(p2.getValue());</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class Pair&lt;K, V&gt; &#123;</div><div class="line"></div><div class="line">    private K key;</div><div class="line">    private V value;</div><div class="line"></div><div class="line">    public Pair(K key, V value) &#123;</div><div class="line">        this.key = key;</div><div class="line">        this.value = value;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setKey(K key) &#123; this.key = key; &#125;</div><div class="line">    public void setValue(V value) &#123; this.value = value; &#125;</div><div class="line">    public K getKey()   &#123; return key; &#125;</div><div class="line">    public V getValue() &#123; return value; &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>我们可以通过如下方式调用这个方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Pair&lt;Integer, String&gt; p1 = new Pair&lt;&gt;(1, &quot;apple&quot;);</div><div class="line">Pair&lt;Integer, String&gt; p2 = new Pair&lt;&gt;(2, &quot;pear&quot;);</div><div class="line">boolean same = Util.&lt;Integer, String&gt;compare(p1, p2);</div></pre></td></tr></table></figure></p>
-<p>在上面的代码中类型被显式的声明了，事实上调用方法时类型参数可以不写出来：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Pair&lt;Integer, String&gt; p1 = new Pair&lt;&gt;(1, &quot;apple&quot;);</div><div class="line">Pair&lt;Integer, String&gt; p2 = new Pair&lt;&gt;(2, &quot;pear&quot;);</div><div class="line">boolean same = Util.compare(p1, p2);</div></pre></td></tr></table></figure></p>
-<p>这个特性被称为类型推理。允许你以调用普通方法的方式来调用泛型方法，关于更多的细节我们将会在类型推理<a href="https://docs.oracle.com/javase/tutorial/java/generics/genTypeInference.html" target="_blank" rel="external">类型推理</a>中说明。<br><a href="../受限的类型参数">下一页</a></p>
-]]></content>
-      
-        <categories>
-            
-            <category> java </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> 翻译 </tag>
-            
-            <tag> 语法 </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[通配符]]></title>
-      <url>/2016/11/11/%E9%80%9A%E9%85%8D%E7%AC%A6/</url>
-      <content type="html"><![CDATA[<p>#通配符<br>在泛型编程中，问号(?)被称作通配符。表示未知的类型。它可以被用在很多情景中，作为参数类型，局部变量，偶尔在返回类型也用它（尽管类型明确些会更好），通配符不鞥用在泛型方法调用时的类型参数或是泛型类的创建中。<br>以下的章节我们将详细讨论通配符的上界，下界和通配符的捕获。<br><a href="../上界通配符">下一页</a></p>
-]]></content>
-      
-        <categories>
-            
-            <category> java </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> 翻译 </tag>
-            
-            <tag> 语法 </tag>
-            
-        </tags>
-        
-    </entry>
-    
   
   
-    
-    <entry>
-      <title><![CDATA[tags]]></title>
-      <url>/tags/index.html</url>
-      <content type="html"></content>
-    </entry>
     
     <entry>
       <title><![CDATA[关于]]></title>
       <url>/%E5%85%B3%E4%BA%8E/index.html</url>
       <content type="html"><![CDATA[<p>贾康的个人博客.<br>可以从上边找到一些java,安卓,信息安全,算法的分享<br>评论插件被墙,暂未找到好的替代方案.<br>之所以选用hexo,是如果用动态的,就得用自己的服务器,就得备案.</p>
 ]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[tags]]></title>
+      <url>/tags/index.html</url>
+      <content type="html"></content>
     </entry>
     
   
